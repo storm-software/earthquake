@@ -68,8 +68,8 @@ onlyBuiltDependencies:
   - nx
   - sharp
 overrides:
-  "@monorepo-template/tools-scripts": workspace:*
-  "@monorepo-template/tools-config": workspace:*
+  "@earthquake/tools-scripts": workspace:*
+  "@earthquake/tools-config": workspace:*
   cookie: ">=0.7.0"
   debug: ">=4.4.0"
   follow-redirects: ">=1.15.9"
