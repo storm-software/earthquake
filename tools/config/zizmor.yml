@@ -18,6 +18,7 @@ rules:
       - gitguardian.yml
       - contributors.yml
       - codeql.yml
+      - dependabot-approval.yml
   excessive-permissions:
     ignore:
       - release.yml

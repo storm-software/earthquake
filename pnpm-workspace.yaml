@@ -2,89 +2,159 @@ packages:
   - tools/*
   - packages/*
   - docs/*
+  - playground/*
+
 catalog:
-  "@ls-lint/ls-lint": ^2.2.3
-  "@microsoft/api-extractor": ^7.49.2
-  "@taplo/cli": ^0.7.0
-  "@types/jest": ^29.5.14
-  "@types/node": ^22.10.2
-  "@nx/devkit": 21.2.2
-  "@nx/eslint-plugin": 21.2.2
-  "@nx/jest": 21.2.2
-  "@nx/js": 21.2.2
-  "@nx/plugin": 21.2.2
-  "@nx/workspace": 21.2.2
-  "@storm-software/build-tools": 0.151.19
-  "@storm-software/config": latest
-  "@storm-software/config-tools": latest
-  "@storm-software/cspell": latest
-  "@storm-software/git-tools": latest
-  "@storm-software/linting-tools": latest
-  "@storm-software/eslint": latest
-  "@storm-software/prettier": latest
-  "@storm-software/markdownlint": latest
-  "@storm-software/esbuild": latest
-  "@storm-software/unbuild": latest
-  "@storm-software/untyped": latest
-  "@storm-software/testing-tools": latest
-  "@storm-software/tsconfig": latest
-  "@storm-software/tsdoc": latest
-  "@storm-software/workspace-tools": latest
-  "@swc-node/register": ^1.10.10
-  "@swc/core": ^1.11.22
-  "@swc/wasm": ^1.11.24
-  "@swc/helpers": ^0.5.17
-  lefthook: ^1.11.12
-  log4brains: ^1.1.0
-  eslint: ^9.27.0
-  prettier: ^3.6.2
-  nx: 21.2.2
-  jest: ^30.0.0-beta.3
-  jest-environment-jsdom: ^30.0.0-beta.3
-  jest-environment-node: ^30.0.0-beta.3
-  sherif: ^1.0.0
-  ts-jest: ^29.2.5
-  ts-node: ^10.9.2
-  tsup: ^8.3.5
-  tslib: ^2.8.1
+  '@ls-lint/ls-lint': ^2.3.1
+  '@monodon/rust': ^2.3.0
+  '@napi-rs/cli': ^3.5.0
+  '@napi-rs/wasm-runtime': 1.1.0
+  '@nx/devkit': 22.2.3
+  '@nx/eslint-plugin': 22.2.3
+  '@nx/jest': 22.2.3
+  '@nx/js': 22.2.3
+  '@nx/plugin': 22.2.3
+  '@nx/react': 22.2.3
+  '@nx/vite': 22.2.3
+  '@nx/web': 22.2.3
+  '@nx/workspace': 22.2.3
+  '@oxc-project/runtime': ^0.97.0
+  '@oxc-project/types': ^0.99.0
+  '@powerlines/nx': ^0.11.0
+  '@powerlines/plugin-env': ^0.13.75
+  '@powerlines/plugin-plugin': ^0.12.21
+  '@powerlines/plugin-react': ^0.1.69
+  '@powerlines/plugin-tsup': ^0.12.78
+  '@powerlines/plugin-untyped': ^0.2.21
+  '@powerlines/plugin-vite': ^0.14.69
+  '@powerlines/tsconfig': ^0.2.39
+  '@storm-software/config': ^1.134.67
+  '@storm-software/config-tools': ^1.188.67
+  '@storm-software/cspell': ^0.45.66
+  '@storm-software/esbuild': ^0.53.66
+  '@storm-software/eslint': ^0.169.68
+  '@storm-software/git-tools': ^2.124.50
+  '@storm-software/linting-tools': ^1.132.67
+  '@storm-software/markdownlint': ^0.30.66
+  '@storm-software/pnpm-tools': ^0.6.67
+  '@storm-software/prettier': ^0.57.66
+  '@storm-software/testing-tools': ^1.119.66
+  '@storm-software/tsdoc': ^0.13.66
+  '@storm-software/unbuild': ^0.57.66
+  '@storm-software/untyped': ^0.24.48
+  '@storm-software/workspace-tools': ^1.294.11
+  '@stryke/convert': ^0.6.24
+  '@stryke/crypto': ^0.5.25
+  '@stryke/fs': ^0.33.20
+  '@stryke/helpers': ^0.9.26
+  '@stryke/path': ^0.22.11
+  '@stryke/type-checks': ^0.5.9
+  '@stryke/types': ^0.10.23
+  '@stryke/url': ^0.3.15
+  '@swc-node/register': ^1.11.1
+  '@swc/core': ^1.15.5
+  '@swc/helpers': ^0.5.17
+  '@taplo/cli': ^0.7.0
+  '@types/estree': 1.0.8
+  '@types/jest': ^30.0.0
+  '@types/node': ^24.10.4
+  '@types/react': ^19.2.7
+  '@types/react-dom': ^19.2.3
+  '@vitest/ui': ^3.2.4
+  client-only: 0.0.1
   copyfiles: ^2.4.1
-  rimraf: ^6.0.1
-  react: ^19.0.0
-  react-dom: ^19.0.0
-  react-native: ^0.77.0
-  typescript: 5.8.3
-  esbuild: ^0.24.2
-  unbuild: ^3.3.1
   defu: ^6.1.4
-  jiti: ^2.4.2
-  verdaccio: 6.0.5
-  zx: ^8.3.2
-linkWorkspacePackages: true
+  es-module-lexer: ^1.7.0
+  esbuild: ^0.24.2
+  eslint: ^9.39.2
+  eslint-flat-config-utils: ^2.1.4
+  estree-walker: ^3.0.3
+  fast-xml-parser: ^5.3.3
+  jest: ^30.2.0
+  jest-environment-jsdom: ^30.2.0
+  jest-environment-node: ^30.2.0
+  jest-util: ^30.2.0
+  jiti: ^2.6.1
+  jsonc-eslint-parser: ^2.4.2
+  lefthook: ^1.13.6
+  log4brains: ^1.1.0
+  magic-string: ^0.30.21
+  nx: 22.2.3
+  periscopic: ^4.0.2
+  powerlines: ^0.31.6
+  prettier: ^3.7.4
+  react: ^19.2.3
+  react-dom: ^19.2.3
+  rimraf: ^6.1.2
+  rsc-html-stream: ^0.0.7
+  server-only: 0.0.1
+  sherif: ^1.9.0
+  signal-exit: 4.1.0
+  ts-jest: 29.4.1
+  ts-node: ^10.9.2
+  tslib: ^2.8.1
+  tsup: 8.4.0
+  tsx: ^4.21.0
+  turbo-stream: ^3.1.0
+  typescript: ^5.9.3
+  verdaccio: ^6.2.4
+  vite: 8.0.0-beta.2
+  vite-plugin-dts: ~4.5.4
+  vitest: ^3.2.4
+  zx: ^8.8.5
+
+configDependencies:
+  pnpm-plugin-storm-software: 0.1.4+sha512-Hegfb70ijqCc65CZwy8aLYhxrYQv3Wo+MZXqSfNAfcge7iSGYm2J3ydU5zkmf89JSvMOJy8J6lo/TMynBGvgtA==
+
+fetchTimeout: 240000
+
+minimumReleaseAgeExclude:
+  - '@storm-software/*'
+  - '@stryke/*'
+  - '@powerlines/*'
+  - powerlines
+
 onlyBuiltDependencies:
-  - "@swc/core"
+  - '@swc/core'
   - core-js
   - esbuild
   - lefthook
   - nx
+  - oxc-resolver
   - sharp
+  - unrs-resolver
+  - workerd
+
 overrides:
-  "@earthquake/tools-scripts": workspace:*
-  "@earthquake/tools-config": workspace:*
-  cookie: ">=0.7.0"
-  debug: ">=4.4.0"
-  follow-redirects: ">=1.15.9"
-  got: ">=14.4.5"
-  ip: ">=2.0.1"
-  loader-utils: ">=3.3.1"
-  markdown-it: ">=14.1.0"
-  micromatch: ">=4.0.8"
-  next: ">=13.4.20-canary.13"
-  node-fetch: ">=3.3.2"
-  nth-check: ">=2.1.1"
-  parse-path: ">=7.0.0"
-  parse-url: ">=9.2.0"
-  path-to-regexp: ">=0.1.12"
-  postcss: ">=8.5.1"
-  shell-quote: ">=1.8.2"
-  simple-git: ">=3.27.0"
-  zod: ">=4.0.5"
+  '@earthquake-playground/starter': workspace:*
+  '@earthquake/nx': workspace:*
+  '@earthquake/rss': workspace:*
+  '@earthquake/tools-config': workspace:*
+  '@earthquake/tools-plugin-build': workspace:*
+  '@earthquake/tools-scripts': workspace:*
+  '@earthquake/tsconfig': workspace:*
+  cookie: '>=0.7.0'
+  debug: '>=4.4.0'
+  earthquake: workspace:*
+  follow-redirects: '>=1.15.9'
+  got: '>=14.4.5'
+  ip: '>=2.0.1'
+  loader-utils: '>=3.3.1'
+  markdown-it: '>=14.1.0'
+  micromatch: '>=4.0.8'
+  next: '>=13.4.20-canary.13'
+  node-fetch: '>=3.3.2'
+  nth-check: '>=2.1.1'
+  parse-path: '>=7.0.0'
+  parse-url: '>=9.2.0'
+  path-to-regexp: '>=0.1.12'
+  postcss: '>=8.5.1'
+  shell-quote: '>=1.8.2'
+  simple-git: '>=3.27.0'
+
+shamefullyHoist: true
+
+supportedArchitectures:
+  cpu: [current, wasm32]
+
+useNodeVersion: 24.11.1

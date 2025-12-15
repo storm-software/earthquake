@@ -1,5 +1,6 @@
 # Earthquake - Shared Config Tools
 
-A collection of tools for managing shared configuration files used in the Earthquake monorepo.
+A collection of tools for managing shared configuration files used in the
+Earthquake monorepo.
 
 This library was generated with [Nx](https://nx.dev).

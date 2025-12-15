@@ -1,0 +1,46 @@
+[package]
+name = "earthquake-common"
+version = "0.1.0"
+publish = false
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/earthquake"
+readme = "./README.md"
+
+[lib]
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+
+# Earthquake
+earthquake-utils = { workspace = true }
+earthquake-error = { workspace = true }
+
+anyhow = { workspace = true }
+arcstr = { workspace = true }
+ariadne = { workspace = true }
+blake3 = { workspace = true }
+camino = { workspace = true }
+derive_more = { workspace = true }
+regex = { workspace = true }
+rustc-hash = { workspace = true }
+serde = { workspace = true, features = ["derive"], optional = true }
+serde_json = { workspace = true }
+schemars = { workspace = true, optional = true }
+sugar_path = { workspace = true }
+oxc_index = { workspace = true }
+url = { workspace = true }
+storm-config = { workspace = true }
+
+[features]
+default = ["serde"]
+deserialize_bundler_options = ["dep:schemars", "dep:serde"]
+serde = ["dep:serde", "oxc_index/serde"]

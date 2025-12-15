@@ -1,6 +1,6 @@
 /* -------------------------------------------------------------------
 
-            ⚡ Storm Software - Earthquake
+                   ⚡ Storm Software - Earthquake
 
  This code was released as part of the Earthquake project. Earthquake
  is maintained by Storm Software under the Apache-2.0 license, and is
@@ -16,11 +16,15 @@
 
  ------------------------------------------------------------------- */
 
-import { getStormConfig } from "@storm-software/eslint";
+import { defineConfig } from "@storm-software/eslint";
 
 Error.stackTraceLimit = Number.POSITIVE_INFINITY;
 
 /** @type {import('eslint').Linter.Config[]} */
-export default getStormConfig({
-  name: "earthquake"
+export default defineConfig({
+  name: "earthquake",
+  react: {},
+  nx: {
+    depsCheck: true
+  }
 });

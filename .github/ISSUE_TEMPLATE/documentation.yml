@@ -4,6 +4,10 @@ title: "[Documentation]: "
 labels: ["documentation"]
 assignees:
   - sullivanpj
+  - "@storm-software/docs"
+reviewers:
+  - sullivanpj
+  - "@storm-software/docs"
 body:
   - type: markdown
     attributes:
@@ -50,7 +54,8 @@ body:
     id: agreed
     attributes:
       label: Code of Conduct
-      description: By submitting this request, you agree to follow our [Code of
+      description:
+        By submitting this request, you agree to follow our [Code of
         Conduct](https://github.com/storm-software/earthquake/blob/main/.github/CODE_OF_CONDUCT.md)
       options:
         - label: I agree to follow this project's Code of Conduct

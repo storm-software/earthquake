@@ -1,0 +1,28 @@
+{
+  "extends": "../../packages/tsconfig/src/base.json",
+  "compilerOptions": {
+    "target": "ES2023",
+    "jsx": "preserve",
+    "module": "Preserve",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "types": ["vite/client", "node"],
+    "allowJs": true,
+    "checkJs": true,
+    "noUnusedLocals": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "erasableSyntaxOnly": true,
+    "skipLibCheck": true
+  },
+  "references": [
+    {
+      "path": "../../packages/tsconfig"
+    },
+    {
+      "path": "../../packages/earthquake"
+    }
+  ],
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["**/dist/**"]
+}

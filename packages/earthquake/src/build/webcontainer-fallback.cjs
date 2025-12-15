@@ -1,0 +1,42 @@
+/* -------------------------------------------------------------------
+
+                   ⚡ Storm Software - Earthquake
+
+ This code was released as part of the Earthquake project. Earthquake
+ is maintained by Storm Software under the Apache-2.0 license, and is
+ free for commercial and private use. For more information, please visit
+ our licensing page at https://stormsoftware.com/licenses/projects/earthquake.
+
+ Website:                  https://stormsoftware.com
+ Repository:               https://github.com/storm-software/earthquake
+ Documentation:            https://docs.stormsoftware.com/projects/earthquake
+ Contact:                  https://stormsoftware.com/contact
+
+ SPDX-License-Identifier:  Apache-2.0
+
+ ------------------------------------------------------------------- */
+
+const fs = require("node:fs");
+const childProcess = require("node:child_process");
+
+const earthquakePkg = JSON.parse(
+  fs.readFileSync(require.resolve("earthquake/package.json"), "utf-8")
+);
+const version = earthquakePkg.version;
+const baseDir = `/tmp/earthquake-${version}`;
+const bindingEntry = `${baseDir}/node_modules/@earthquake/binding-wasm32-wasi/earthquake-binding.wasi.cjs`;
+
+if (!fs.existsSync(bindingEntry)) {
+  const bindingPkg = `@earthquake/binding-wasm32-wasi@${version}`;
+  fs.rmSync(baseDir, { recursive: true, force: true });
+  fs.mkdirSync(baseDir, { recursive: true });
+
+  // eslint-disable-next-line no-console
+  console.log(`[earthquake] Downloading ${bindingPkg} on WebContainer...`);
+  childProcess.execFileSync("pnpm", ["i", bindingPkg], {
+    cwd: baseDir,
+    stdio: "inherit"
+  });
+}
+
+module.exports = require(bindingEntry);

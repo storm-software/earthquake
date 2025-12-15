@@ -1,0 +1,29 @@
+[book]
+authors = ["Storm Software"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Earthquake Book"
+description = "An internal Storm Software book that outlines the Earthquake project."
+
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "3.0.2"    # do not edit: managed by `mdbook-admonish install`
+
+[output.html]
+theme = "src/theme"
+git-repository-url = "https://github.com/storm-software/earthquake"
+default-theme = "coal"
+no-section-label = true
+mathjax-support = true
+additional-css = ["./mdbook-admonish.css"]
+
+[output.html.fold]
+enable = true
+level = 1
+
+[build]
+build-dir = "../../dist/docs/book"
+
+[rust]
+edition = "2024"

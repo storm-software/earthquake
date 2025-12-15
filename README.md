@@ -1,6 +1,12 @@
-<div align="center"><img src="https://public.storm-cdn.com/storm-banner.gif" width="100%" alt="Storm Software" /></div>
-
+<div align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://public.storm-cdn.com/storm-software/banner-1280x640-dark-optimized.gif">
+  <source media="(prefers-color-scheme: light)" srcset="https://public.storm-cdn.com/storm-software/banner-1280x640-light-optimized.gif">
+<img src="https://public.storm-cdn.com/storm-software/banner-1280x640-dark-optimized.gif" width="100%" alt="Storm Software" />
+</picture>
+</div>
 <br />
+
 <div align="center">
 <b>
 <a href="https://stormsoftware.com" target="_blank">Website</a>  •
@@ -11,20 +17,15 @@
 </div>
 <br />
 
-**🪨 Earthquake** is a React framework that uses Storm Stack to simplify React
-Server Components, Static Site Generation, and Server Side Rendering on
-Cloudflare. This monorepo contains the `earthquake` package, which
-provides the foundational components and utilities for building applications
-with the Storm Stack, and various other supporting packages, libraries, and
-applications.
+**💥 Earthquake** is a React framework that simplifies Partial Prerendering,
+React Server Components, Static Site Generation, and Server Side Rendering. It
+is built on top of [Powerlines](https://github.com/storm-software/powerlines), a
+"framework framework" that provides extensible building blocks for creating and
+using modern development tools.
 
-<br />
-
-**Earthquake** is built using <a href="https://nx.dev/" target="_blank">Nx</a>, a
-set of extensible dev tools for monorepos, which helps you develop like Google,
-Facebook, and Microsoft. Building on top of Nx, the Open System provides a set
-of tools and patterns that help you scale your monorepo to many teams while
-keeping the codebase maintainable.
+This monorepo contains the `earthquake` package, which provides the foundational
+components and utilities for building applications with the Powerlines, and
+various other supporting packages, libraries, and applications.
 
 <h3 align="center">💻 Visit <a href="https://stormsoftware.com" target="_blank">stormsoftware.com</a> to stay up to date with this developer</h3>
 <br />
@@ -64,7 +65,7 @@ keeping the codebase maintainable.
   - [Running End-to-End Tests](#running-end-to-end-tests)
   - [Understand your workspace](#understand-your-workspace)
 - [☁ Nx Cloud](#-nx-cloud)
-  - [Distributed Computation Caching \& Distributed Task Execution](#distributed-computation-caching--distributed-task-execution)
+  - [Distributed Computation Caching & Distributed Task Execution](#distributed-computation-caching--distributed-task-execution)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Support](#support)
@@ -77,7 +78,8 @@ keeping the codebase maintainable.
 
 # Quick Features
 
-This section contains a quick overview of the features and functionality of the repository.
+This section contains a quick overview of the features and functionality of the
+repository.
 
 ## Visual Studio Code Extension
 
@@ -171,8 +173,8 @@ from `@earthquake/my-lib`.
 
 ## Code Scaffolding
 
-Run `nx g @nx/react:component my-component --project=earthquake` to generate a new
-component.
+Run `nx g @nx/react:component my-component --project=earthquake` to generate a
+new component.
 
 <div align="right">[ <a href="#table-of-contents">Back to top ▲</a> ]</div>
 <br />
@@ -273,8 +275,8 @@ Please try to create bug reports that are:
 Please adhere to this project's [code of conduct](.github/CODE_OF_CONDUCT.md).
 
 You can use
-[markdownlint-cli](https://github.com/storm-software/earthquake/markdownlint-cli) to
-check for common markdown style inconsistency.
+[markdownlint-cli](https://github.com/storm-software/earthquake/markdownlint-cli)
+to check for common markdown style inconsistency.
 
 <div align="right">[ <a href="#table-of-contents">Back to top ▲</a> ]</div>
 <br />
@@ -297,10 +299,6 @@ distribute this template as you like. If you have any specific questions, please
 reach out to the Storm Software development team.
 
 See [LICENSE](LICENSE) for more information.
-
-<br />
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fstorm-software%2Fearthquake.svg?type=large&issueType=license)](https://app.fossa.io/projects/git%2Bgithub.com%2Fstorm-software%2Fearthquake?ref=badge_large&issueType=license)
 
 <div align="right">[ <a href="#table-of-contents">Back to top ▲</a> ]</div>
 <br />
@@ -348,7 +346,11 @@ specification. Contributions of any kind welcome!
 <br />
 
 <div align="center">
-<img src="https://public.storm-cdn.com/brand-banner.png" width="100%" alt="Storm Software" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://public.storm-cdn.com/storm-software/banner-1280x320-dark-optimized.webp">
+  <source media="(prefers-color-scheme: light)" srcset="https://public.storm-cdn.com/storm-software/banner-1280x320-light-optimized.webp">
+<img src="https://public.storm-cdn.com/storm-software/banner-1280x320-dark-optimized.webp" width="100%" alt="Storm Software" />
+</picture>
 </div>
 <br />
 

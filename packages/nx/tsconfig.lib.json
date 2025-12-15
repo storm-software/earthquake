@@ -1,0 +1,28 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+    "types": ["node"],
+    "outDir": "./dist"
+  },
+  "references": [
+    {
+      "path": "../earthquake/tsconfig.lib.json"
+    }
+  ],
+  "include": [
+    "executors.ts",
+    "generators.ts",
+    "index.ts",
+    "**/*.json",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "powerlines.config.ts"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/generators/**/files/**/*",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}

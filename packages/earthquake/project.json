@@ -1,0 +1,79 @@
+{
+  "name": "earthquake",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/earthquake/src",
+  "targets": {
+    "build-bindings-release": {
+      "executor": "@storm-software/workspace-tools:napi",
+      "dependsOn": ["^build"],
+      "options": {
+        "outputPath": "{sourceRoot}/build",
+        "package": "earthquake-binding",
+        "jsBinding": "binding.cjs",
+        "dts": "binding.d.cts",
+        "release": true,
+        "manifestPath": "crates/earthquake-binding/Cargo.toml",
+        "verbose": false
+      }
+    },
+    "build-bindings-prod": {
+      "executor": "@storm-software/workspace-tools:napi",
+      "dependsOn": ["^build"],
+      "options": {
+        "outputPath": "{sourceRoot}/build",
+        "package": "earthquake-binding",
+        "jsBinding": "binding.cjs",
+        "dts": "binding.d.cts",
+        "profile": "prod",
+        "manifestPath": "crates/earthquake-binding/Cargo.toml",
+        "verbose": false
+      }
+    },
+    "build-bindings-wasi": {
+      "executor": "@storm-software/workspace-tools:napi",
+      "dependsOn": ["^build"],
+      "options": {
+        "outputPath": "{sourceRoot}/build",
+        "package": "earthquake-binding",
+        "jsBinding": "binding.cjs",
+        "dts": "binding.d.cts",
+        "target": "wasm32-wasip1-threads",
+        "manifestPath": "crates/earthquake-binding/Cargo.toml",
+        "verbose": false
+      }
+    },
+    "build-bindings-release-wasi": {
+      "executor": "@storm-software/workspace-tools:napi",
+      "dependsOn": ["^build"],
+      "options": {
+        "outputPath": "{sourceRoot}/build",
+        "package": "earthquake-binding",
+        "jsBinding": "binding.cjs",
+        "dts": "binding.d.cts",
+        "profile": "release-wasi",
+        "target": "wasm32-wasip1-threads",
+        "manifestPath": "crates/earthquake-binding/Cargo.toml",
+        "verbose": false
+      }
+    },
+    "generate-vendor": {
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/scripts/generate-vendor.mjs",
+        "{projectRoot}/package.json"
+      ],
+      "outputs": ["{projectRoot}/dist/vendor"],
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build"],
+      "options": {
+        "command": "zx scripts/generate-vendor.mjs",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "nx-release-publish": {
+      "executor": "@storm-software/workspace-tools:npm-publish"
+    }
+  },
+  "tags": ["platform:node"]
+}

@@ -1,14 +1,15 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@storm-software/tsconfig/core.json",
-  "display": "Earthquake - Monorepo",
+  "extends": "@powerlines/tsconfig/recommended.json",
+  "display": "Earthquake - Monorepo Base",
   "compilerOptions": {
-    "baseUrl": ".",
-    "rootDir": ".",
-    "paths": {
-      "@earthquake/tools-scripts": ["tools/scripts/src/index.ts"],
-      "@earthquake/tools-scripts/*": ["tools/scripts/src/*"],
-      "@earthquake/tools-config/*": ["tools/config/*"]
-    }
+    "incremental": true,
+    "composite": true,
+    "jsx": "react-jsx",
+    "types": ["node"],
+    "declaration": true,
+    "declarationMap": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true
   }
 }

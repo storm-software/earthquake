@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "display": "Earthquake - Internal build plugin",
+  "compilerOptions": {
+    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+    "types": ["node"],
+    "outDir": "./dist"
+  },
+  "references": [],
+  "include": ["src/**/*.ts", "powerlines.config.ts"]
+}

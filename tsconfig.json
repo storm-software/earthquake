@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Earthquake - Monorepo",
+  "extends": "./tsconfig.base.json",
+  "references": [
+    {
+      "path": "./packages/earthquake"
+    },
+    {
+      "path": "./packages/tsconfig"
+    },
+    {
+      "path": "./packages/nx"
+    },
+    {
+      "path": "./packages/rss"
+    },
+    {
+      "path": "./tools/config"
+    },
+    {
+      "path": "./tools/plugin-build"
+    }
+  ],
+  "files": []
+}

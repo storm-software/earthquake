@@ -1,0 +1,8 @@
+{
+  "name": "earthquake-common",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "crates/earthquake-common/src",
+  "targets": {},
+  "tags": []
+}

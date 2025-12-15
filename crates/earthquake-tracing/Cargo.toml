@@ -1,0 +1,49 @@
+[package]
+name = "earthquake-tracing"
+description = "The core Earthquake crate that provides various utilities and functions to process the Earthquake project's files."
+version = "0.1.0"
+publish = false
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/earthquake"
+readme = "./README.md"
+
+[lib]
+doctest = false
+
+[lints]
+workspace = true
+
+[features]
+default = ["serde"]
+serde = ["dep:serde", "oxc_index/serde"]
+testing = []
+experimental = []
+
+[dependencies]
+ariadne = { workspace = true }
+anyhow = { workspace = true }
+arcstr = { workspace = true }
+blake3 = { workspace = true }
+bitflags = { workspace = true }
+dashmap = { workspace = true }
+rustc-hash = { workspace = true }
+serde = { workspace = true, optional = true }
+serde_json = { workspace = true }
+sugar_path = { workspace = true }
+ts-rs = { workspace = true }
+tracing = { workspace = true }
+tracing-chrome = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+# Oxc
+oxc = { workspace = true }
+oxc_allocator = { workspace = true }
+oxc_ecmascript = { workspace = true }
+oxc_index = { workspace = true }
+oxc_traverse = { workspace = true }

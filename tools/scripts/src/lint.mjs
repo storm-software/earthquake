@@ -1,7 +1,7 @@
 #!/usr/bin/env zx
 /* -------------------------------------------------------------------
 
-            ⚡ Storm Software - Earthquake
+                   ⚡ Storm Software - Earthquake
 
  This code was released as part of the Earthquake project. Earthquake
  is maintained by Storm Software under the Apache-2.0 license, and is
@@ -49,7 +49,7 @@ try {
     );
   }
 
-  echo`${chalk.green("✅  Successfully linted the monorepo's files")}`;
+  echo`${chalk.green(" ✔ Successfully linted the monorepo's files")}`;
 } catch (error) {
   echo`${chalk.red(error?.message ? error.message : "A failure occurred while linting the monorepo")}`;
 

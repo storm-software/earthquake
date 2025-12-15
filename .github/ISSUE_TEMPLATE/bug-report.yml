@@ -4,6 +4,10 @@ title: "[Bug]: "
 labels: ["bug", "triage"]
 assignees:
   - sullivanpj
+  - "@storm-software/architecture"
+reviewers:
+  - sullivanpj
+  - "@storm-software/architecture"
 body:
   - type: markdown
     attributes:
@@ -14,7 +18,7 @@ body:
     attributes:
       label: Contact Details
       description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
+      placeholder: ex. my-email@example.com
     validations:
       required: true
   - type: textarea
@@ -90,14 +94,16 @@ body:
     id: logs
     attributes:
       label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be
+      description:
+        Please copy and paste any relevant log output. This will be
         automatically formatted into code, so no need for backticks.
       render: TypeScript
   - type: checkboxes
     id: agreed
     attributes:
       label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of
+      description:
+        By submitting this issue, you agree to follow our [Code of
         Conduct](https://github.com/storm-software/earthquake/blob/main/.github/CODE_OF_CONDUCT.md)
       options:
         - label: I agree to follow this project's Code of Conduct

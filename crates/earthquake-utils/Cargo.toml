@@ -1,0 +1,45 @@
+[package]
+name = "earthquake-utils"
+version = "0.1.0"
+publish = false
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/earthquake"
+readme = "./README.md"
+
+[lib]
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+regex = { workspace = true }
+memchr = { workspace = true }
+xxhash-rust = { workspace = true, features = ["xxh3"] }
+uuid = { workspace = true, features = ["v4"] }
+base-encode = { workspace = true }
+cow-utils = { workspace = true }
+regress = { workspace = true }
+fast-glob = { workspace = true }
+form_urlencoded = { workspace = true }
+futures = { workspace = true }
+base64-simd = { workspace = true }
+rustc-hash = { workspace = true }
+nom = { workspace = true }
+mime = { workspace = true }
+dashmap = { workspace = true }
+simdutf8 = { workspace = true }
+sugar_path = { workspace = true }
+infer = { workspace = true }
+tokio = { workspace = true, features = ["sync"] }
+
+[target.'cfg(not(target_family = "wasm"))'.dependencies]
+async-scoped = { workspace = true, features = ["use-tokio"] }
+rayon = { workspace = true }

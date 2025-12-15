@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+    "types": ["node"],
+    "outDir": "./dist"
+  },
+  "references": [],
+  "include": ["src/**/*.json"]
+}

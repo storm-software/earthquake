@@ -1,7 +1,7 @@
 #!/usr/bin/env zx
 /* -------------------------------------------------------------------
 
-            ⚡ Storm Software - Earthquake
+                   ⚡ Storm Software - Earthquake
 
  This code was released as part of the Earthquake project. Earthquake
  is maintained by Storm Software under the Apache-2.0 license, and is
@@ -65,7 +65,7 @@ try {
   }
 
   echo`${chalk.green(
-    `✅  Successfully built the monorepo in ${configuration} mode!`
+    ` ✔ Successfully built the monorepo in ${configuration} mode!`
   )}`;
 } catch (error) {
   echo`${chalk.red(error?.message ? error.message : "A failure occurred while building the monorepo")}`;

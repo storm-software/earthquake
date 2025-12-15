@@ -1,14 +1,12 @@
 name: Zizmor Scan
 
 on:
+  pull_request:
   push:
     branches:
       - main
-      - alpha
-      - beta
-  pull_request:
-    branches:
-      - "**"
+      - next
+      - experimental
 
 permissions: {}
 

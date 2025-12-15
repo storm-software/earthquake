@@ -1,0 +1,64 @@
+[package]
+name = "earthquake-core"
+description = "The core Earthquake crate that provides various utilities and functions to process the Earthquake project's files."
+version = "0.1.0"
+publish = true
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/earthquake"
+readme = "./README.md"
+
+[lib]
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+# Earthquake
+earthquake-tracing = { workspace = true }
+earthquake-utils = { workspace = true }
+earthquake-error = { workspace = true }
+earthquake-common = { workspace = true }
+earthquake-plugin = { workspace = true }
+
+# Storm Software
+storm-config = { workspace = true }
+
+anyhow = { workspace = true }
+arcstr = { workspace = true }
+ariadne = { workspace = true }
+blake3 = { workspace = true }
+camino = { workspace = true }
+derive_more = { workspace = true }
+rayon = { workspace = true }
+regex = { workspace = true }
+rustc-hash = { workspace = true }
+serde = { workspace = true, features = ["derive"], optional = true }
+serde_json = { workspace = true }
+schemars = { workspace = true, optional = true }
+tokio = { workspace = true, features = ["rt", "macros", "sync", "time"] }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+# Oxc
+oxc = { workspace = true }
+oxc_allocator = { workspace = true }
+oxc_ecmascript = { workspace = true }
+oxc_index = { workspace = true }
+oxc_traverse = { workspace = true }
+
+[features]
+default = ["serde"]
+serde = ["dep:serde", "oxc_index/serde"]
+testing = []
+experimental = []
+
+[package.metadata.cargo-shear]
+# `serde_json` is used in `trace_action` macro.
+ignored = ["serde", "serde_json"]

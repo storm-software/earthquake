@@ -1,7 +1,7 @@
 #!/usr/bin/env zx
 /* -------------------------------------------------------------------
 
-            ⚡ Storm Software - Earthquake
+                   ⚡ Storm Software - Earthquake
 
  This code was released as part of the Earthquake project. Earthquake
  is maintained by Storm Software under the Apache-2.0 license, and is
@@ -60,7 +60,7 @@ try {
     );
   }
 
-  echo`${chalk.green("✅  Successfully released workspace packages")}`;
+  echo`${chalk.green(" ✔ Successfully released workspace packages")}`;
 } catch (error) {
   echo`${chalk.red(error?.message ? error.message : "A failure occurred while releasing workspace packages")}`;
 

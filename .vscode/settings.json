@@ -20,10 +20,7 @@
     "packages/samples/scratch/**": false // Those files are in gitignore but we still want to search for them
   },
   "files.exclude": {
-    "**/common/temp/**": true,
-    "**/obj/**": true,
-    "**/bin/**": true,
-    "**/.git": true,
+    "**/temp/**": true,
     "**/.DS_Store": true
   },
   "relay.autoStartCompiler": true,

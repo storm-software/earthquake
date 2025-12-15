@@ -26,15 +26,6 @@ node_modules
 .settings/
 *.sublime-workspace
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/cspell.json
-!.vscode/mcp.json
-
 # misc
 /.sass-cache
 /connect.lock
@@ -103,7 +94,8 @@ bld/
 # [Bb]in/
 [Oo]bj/
 [Ll]og/
-!packages/[Ll]og
+!crates/**/[Ll]og
+!packages/**/[Ll]og
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -449,3 +441,6 @@ devenv.local.nix
 
 # pre-commit
 .pre-commit-config.yaml
+
+vite.config.*.timestamp*
+vitest.config.*.timestamp*

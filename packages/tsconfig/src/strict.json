@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@earthquake/tsconfig/recommended.json",
+  "display": "Earthquake - Strict Configuration",
+  "compilerOptions": {
+    "verbatimModuleSyntax": true,
+    "noPropertyAccessFromIndexSignature": true
+  }
+}

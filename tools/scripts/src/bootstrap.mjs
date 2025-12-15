@@ -1,7 +1,7 @@
 #!/usr/bin/env zx
 /* -------------------------------------------------------------------
 
-            ⚡ Storm Software - Earthquake
+                   ⚡ Storm Software - Earthquake
 
  This code was released as part of the Earthquake project. Earthquake
  is maintained by Storm Software under the Apache-2.0 license, and is
@@ -17,7 +17,7 @@
 
  ------------------------------------------------------------------- */
 
-import { chalk, echo } from "zx";
+import { $, chalk, echo } from "zx";
 
 try {
   echo`${chalk.whiteBright("⚙️  Bootstrapping the monorepo...")}`;
@@ -36,18 +36,18 @@ try {
   //     platform: "node"
   //   });
 
-  //   const proc = $`pnpm nx reset --onlyDaemon`.timeout(`${2 * 60}s`);
-  //   proc.stdout.on("data", data => {
-  //     echo`${data}`;
-  //   });
-  //   const result = await proc;
-  //   if (result.exitCode !== 0) {
-  //     throw new Error(
-  //       `An error occurred while resetting the Nx daemon process: \n\n${result.message}\n`
-  //     );
-  //   }
+  const proc = $`pnpm nx sync`.timeout(`${2 * 60}s`);
+  proc.stdout.on("data", data => {
+    echo`${data}`;
+  });
+  const result = await proc;
+  if (result.exitCode !== 0) {
+    throw new Error(
+      `An error occurred while syncing the Nx monorepo: \n\n${result.message}\n`
+    );
+  }
 
-  echo`${chalk.green("✅  Completed monorepo bootstrapping successfully!")}`;
+  echo`${chalk.green(" ✔ Completed monorepo bootstrapping successfully!")}`;
 } catch (error) {
   echo`${chalk.red(
     error?.message

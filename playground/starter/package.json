@@ -1,0 +1,22 @@
+{
+  "name": "@earthquake-playground/starter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "earthquake dev",
+    "build": "echo 'No build step required' ",
+    "start": "earthquake preview"
+  },
+  "dependencies": {
+    "earthquake": "workspace:*",
+    "react": "catalog:"
+  },
+  "devDependencies": {
+    "@earthquake/tsconfig": "workspace:*",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}

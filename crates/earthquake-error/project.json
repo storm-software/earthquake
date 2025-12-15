@@ -1,0 +1,8 @@
+{
+  "name": "earthquake-error",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "crates/earthquake-error/src",
+  "targets": {},
+  "tags": []
+}
