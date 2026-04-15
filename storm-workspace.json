@@ -6,5 +6,11 @@
   "repository": "https://github.com/storm-software/earthquake",
   "packageManager": "pnpm",
   "logLevel": "info",
-  "docs": "https://docs.stormsoftware.com/projects/earthquake"
+  "docs": "https://docs.stormsoftware.com/projects/earthquake",
+  "release": {
+    "banner": {
+      "url": "https://public.storm-cdn.com/earthquake/banner-1280x320-dark.gif",
+      "alt": "Earthquake logo banner"
+    }
+  }
 }
