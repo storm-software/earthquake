@@ -35,7 +35,7 @@ try {
     `🏗️  Building the monorepo in ${configuration} mode...`
   )}`;
 
-  let proc = $`pnpm bootstrap`.timeout(`${1 * 60}s`);
+  let proc = $`pnpm bootstrap`.timeout(`${2 * 60}s`);
   proc.stdout.on("data", data => {
     echo`${data}`;
   });
@@ -51,7 +51,7 @@ try {
   proc =
     $`pnpm nx run-many --target=build --exclude="monorepo" --configuration=${
       configuration
-    } --outputStyle=dynamic-legacy --parallel=5`.timeout(`${10 * 60}s`);
+    } --outputStyle=dynamic-legacy --parallel=5`.timeout(`${30 * 60}s`);
   proc.stdout.on("data", data => {
     echo`${data}`;
   });
