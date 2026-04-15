@@ -70,6 +70,7 @@ impl RouteModuleKind {
     }
   }
 
+  /// Returns an iterator over all possible `RouteModuleKind` variants.
   pub fn iterator() -> Iter<'static, RouteModuleKind> {
     static KINDS: [RouteModuleKind; 12] = [
       RouteModuleKind::Page,

@@ -64,23 +64,23 @@ impl RouteModules {
       && Metadata::is_empty(&self.metadata)
   }
 
-  fn without_leaves(&self) -> Self {
-    Self {
-      page: None,
-      layout: self.layout.clone(),
-      error: self.error.clone(),
-      global_error: self.global_error.clone(),
-      global_not_found: self.global_not_found.clone(),
-      loading: self.loading.clone(),
-      template: self.template.clone(),
-      not_found: self.not_found.clone(),
-      forbidden: self.forbidden.clone(),
-      unauthorized: self.unauthorized.clone(),
-      default: None,
-      api: None,
-      metadata: self.metadata.clone(),
-    }
-  }
+  //   fn without_leaves(&self) -> Self {
+  //     Self {
+  //       page: None,
+  //       layout: self.layout.clone(),
+  //       error: self.error.clone(),
+  //       global_error: self.global_error.clone(),
+  //       global_not_found: self.global_not_found.clone(),
+  //       loading: self.loading.clone(),
+  //       template: self.template.clone(),
+  //       not_found: self.not_found.clone(),
+  //       forbidden: self.forbidden.clone(),
+  //       unauthorized: self.unauthorized.clone(),
+  //       default: None,
+  //       api: None,
+  //       metadata: self.metadata.clone(),
+  //     }
+  //   }
 }
 
 impl From<Vec<Option<RouteModule>>> for RouteModules {

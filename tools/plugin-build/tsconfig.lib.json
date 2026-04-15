@@ -7,5 +7,5 @@
     "outDir": "./dist"
   },
   "references": [],
-  "include": ["src/**/*.ts", "powerlines.config.ts"]
+  "include": ["src/**/*.ts", "powerlines.config.ts", "powerlines.d.ts"]
 }

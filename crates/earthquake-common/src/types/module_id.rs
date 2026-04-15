@@ -15,20 +15,24 @@ pub struct ModuleId {
 }
 
 impl ModuleId {
+  /// Creates a new `ModuleId` from a string-like value.
   #[inline]
   pub fn new(value: impl Into<ArcStr>) -> Self {
     Self::new_arc_str(value.into())
   }
 
+  /// Creates a new `ModuleId` from an `ArcStr`.
   #[inline]
   pub const fn new_arc_str(resource_id: ArcStr) -> Self {
     Self { resource_id }
   }
 
+  /// Returns a reference to the underlying resource ID string.
   pub fn resource_id(&self) -> &ArcStr {
     &self.resource_id
   }
 
+  /// Stabilizes the module ID by converting it to a relative path based on the provided current working directory.
   pub fn stabilize(&self, cwd: &Path) -> String {
     stabilize_id(&self.resource_id, cwd)
   }
@@ -67,6 +71,7 @@ impl From<ArcStr> for ModuleId {
 }
 
 impl ModuleId {
+  /// Converts the `ModuleId` into a relative `Utf8PathBuf` based on the provided root path.
   pub fn relative_path(&self, root: impl AsRef<Path>) -> Utf8PathBuf {
     let path = self.resource_id.as_path();
     Utf8PathBuf::from_path_buf(path.relative(root)).expect("Failed to convert to a UTF-8 path.")

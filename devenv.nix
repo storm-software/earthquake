@@ -2,7 +2,13 @@
 {
   name = "storm-software/earthquake";
 
-  # https://devenv.sh/languages/
+  dotenv.enable = true;
+  dotenv.filename = [
+    ".env"
+    ".env.local"
+  ];
+  dotenv.disableHint = true;
+
   languages.rust = {
     enable = true;
     mold.enable = false;

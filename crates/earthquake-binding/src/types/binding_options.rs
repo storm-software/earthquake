@@ -8,7 +8,7 @@ use crate::types::{
 };
 use derive_more::Debug;
 use earthquake_common::{Logger, Options};
-use napi::bindgen_prelude::{BigInt, Promise};
+use napi::bindgen_prelude::Promise;
 pub type BindingLogger = Option<JsCallback<BindingLog, Promise<()>>>;
 
 #[napi_derive::napi(object, object_to_js = false)]
@@ -16,24 +16,12 @@ pub type BindingLogger = Option<JsCallback<BindingLog, Promise<()>>>;
 pub struct BindingOptions {
   /// The name of the application.
   pub name: String,
+  /// The title of the application.
+  pub title: String,
   /// The description of the application.
   pub description: Option<String>,
-  /// The version of the application.
-  pub version: Option<String>,
   /// The base URL for the application.
   pub base_url: String,
-  /// The checksum generated from the resolved options.
-  pub checksum: String,
-  /// The build identifier.
-  pub build_id: String,
-  /// The release identifier.
-  pub release_id: String,
-  /// The build timestamp.
-  pub timestamp: BigInt,
-  /// A hash that represents the path to the project root directory.
-  pub project_root_hash: String,
-  /// A hash that represents the configuration provided to the Powerlines process.
-  pub config_hash: String,
   #[debug(skip)]
   #[napi(ts_type = "Array<string | RegExp>")]
   /// Patterns to treat as external.
@@ -44,9 +32,6 @@ pub struct BindingOptions {
   pub no_external: Option<Vec<BindingStringOrRegex>>,
   /// Whether to skip bundling node_modules.
   pub skip_node_modules_bundle: Option<bool>,
-  #[napi(ts_type = "'node' | 'browser' | 'neutral'")]
-  /// The platform target for the build.
-  pub platform: Option<String>,
   #[napi(ts_type = "'trace' | 'debug' | 'info' | 'warn' | 'error' | 'silent'")]
   /// The log level.
   pub log_level: Option<BindingLogLevel>,
@@ -62,11 +47,11 @@ pub struct BindingOptions {
   /// An object containing an interface to invoke Earthquake plugins from.
   pub plugin_api: BindingPluginApiOptions,
   /// The root directory of the project.
-  pub project_root: String,
+  pub root: String,
   /// The root directory of the workspace.
   pub workspace_root: String,
   /// Routes directory.
-  pub routes_path: String,
+  pub input_path: String,
   /// Path to public directory.
   pub public_path: String,
   /// Path to store build artifacts.
@@ -95,26 +80,19 @@ impl Default for BindingOptions {
   fn default() -> Self {
     Self {
       name: String::new(),
+      title: String::new(),
       description: None,
-      version: None,
       base_url: String::new(),
-      checksum: String::new(),
-      build_id: String::new(),
-      release_id: String::new(),
-      timestamp: BigInt::from(0_u128),
-      project_root_hash: String::new(),
-      config_hash: String::new(),
       external: None,
       no_external: None,
       skip_node_modules_bundle: None,
-      platform: None,
       log_level: None,
       disable_tracing: None,
       custom_logger: None,
       plugin_api: BindingPluginApiOptions::default(),
-      project_root: String::new(),
+      root: String::new(),
       workspace_root: String::new(),
-      routes_path: String::new(),
+      input_path: String::new(),
       public_path: String::new(),
       artifacts_path: String::new(),
       builtin_path: String::new(),
@@ -139,7 +117,6 @@ impl Into<Options> for BindingOptions {
     } else {
       None
     };
-    let platform = if self.platform.is_some() { Some(self.platform.unwrap()) } else { None };
 
     let custom_logger = if self.custom_logger.is_some() {
       let on_log = self
@@ -161,27 +138,20 @@ impl Into<Options> for BindingOptions {
 
     Options {
       name: self.name,
+      title: self.title,
       description: self.description,
-      version: self.version,
       base_url: self.base_url,
-      checksum: self.checksum,
-      build_id: self.build_id,
-      release_id: self.release_id,
-      timestamp: self.timestamp.get_u64().1,
-      project_root_hash: self.project_root_hash,
-      config_hash: self.config_hash,
       external: self.external.map(|vec| vec.into_iter().map(std::convert::Into::into).collect()),
       no_external: self
         .no_external
         .map(|vec| vec.into_iter().map(std::convert::Into::into).collect()),
       skip_node_modules_bundle,
-      platform,
       log_level,
       disable_tracing: self.disable_tracing,
       custom_logger,
-      project_root: self.project_root,
+      root: self.root,
       workspace_root: self.workspace_root,
-      routes_path: self.routes_path,
+      input_path: self.input_path,
       public_path: self.public_path,
       artifacts_path: self.artifacts_path,
       builtin_path: self.builtin_path,

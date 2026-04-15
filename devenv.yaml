@@ -17,8 +17,14 @@ inputs:
     inputs:
       nixpkgs:
         follows: nixpkgs
+  treefmt-nix:
+    url: github:numtide/treefmt-nix
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
 imports:
   - storm-ops/devenv-modules/base
   - storm-ops/devenv-modules/core
   - storm-ops/devenv-modules/rust
+  - storm-ops/devenv-modules/ai
   - storm-ops/devenv-modules/mdbook

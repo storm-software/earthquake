@@ -1,6 +1,6 @@
 use earthquake_common::{NormalizedOptions, Options};
 use earthquake_error::EarthquakeResult;
-use earthquake_plugin::pluginable::SharedPluginable;
+use earthquake_plugin::plugable::SharedPlugable;
 use earthquake_tracing::Session;
 use std::future::{Future, ready};
 
@@ -9,18 +9,19 @@ use crate::{
   route_factory::{RouteFactory, RouteFactoryOptions},
 };
 
-pub struct Engine {
+#[derive(Debug)]
+pub struct StaticAnalysisEngine {
   pub(super) session: Session,
   pub(super) is_closed: bool,
   pub(super) route_factory: RouteFactory,
 }
 
-impl Engine {
+impl StaticAnalysisEngine {
   pub fn new(options: Options) -> EarthquakeResult<Self> {
     Self::with_plugins(options, Vec::new())
   }
 
-  pub fn with_plugins(options: Options, plugins: Vec<SharedPluginable>) -> EarthquakeResult<Self> {
+  pub fn with_plugins(options: Options, plugins: Vec<SharedPlugable>) -> EarthquakeResult<Self> {
     let normalized_options = NormalizedOptions::from(options);
 
     let route_factory = RouteFactory::new(RouteFactoryOptions {
@@ -37,7 +38,7 @@ impl Engine {
   }
 
   #[tracing::instrument(level = "debug", skip_all, parent = &self.session.span)]
-  pub fn prepare_routes<'a>(&mut self) -> EarthquakeResult<Route<'a>> {
+  pub fn prepare<'a>(&mut self) -> EarthquakeResult<Route<'a>> {
     self.create_error_if_closed()?;
 
     self.route_factory.create()

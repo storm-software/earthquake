@@ -6,6 +6,7 @@ use earthquake_tracing::try_init_tracing;
 use napi_derive::napi;
 
 #[napi]
+#[derive(Debug)]
 pub struct TraceSubscriberGuard {
   guard: Option<Box<dyn Any + Send>>,
 }

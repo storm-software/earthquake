@@ -6,21 +6,22 @@ use crate::{
   },
   utils::{handle_result, handle_warnings, to_binding_error},
 };
-use earthquake_core::{Engine, RouteHandle};
+use earthquake_core::{RouteHandle, StaticAnalysisEngine};
 use napi::{Env, bindgen_prelude::PromiseRaw};
 use napi_derive::napi;
 
 #[napi]
-pub struct BindingEngine {
-  inner: Engine,
+#[derive(Debug)]
+pub struct BindingStaticAnalysisEngine {
+  inner: StaticAnalysisEngine,
   last_handle: Option<RouteHandle>,
 }
 
 #[napi]
-impl BindingEngine {
+impl BindingStaticAnalysisEngine {
   #[napi(constructor)]
   pub fn new(options: BindingOptions) -> napi::Result<Self> {
-    let inner = Engine::new(options.into());
+    let inner = StaticAnalysisEngine::new(options.into());
     if inner.is_err() {
       return Err(napi::Error::from_reason(
         inner
@@ -37,11 +38,11 @@ impl BindingEngine {
   }
 
   #[napi]
-  pub fn prepare_routes<'env>(
+  pub fn prepare<'env>(
     &mut self,
     env: &'env Env,
   ) -> napi::Result<PromiseRaw<'env, BindingResult<BindingPrepareRoutesOutput>>> {
-    let maybe_route = self.inner.prepare_routes();
+    let maybe_route = self.inner.prepare();
     if let Ok(route) = &maybe_route {
       self.last_handle = Some(route.context());
     }
@@ -60,9 +61,7 @@ impl BindingEngine {
           let errors: Vec<BindingError> = errs
             .into_vec()
             .iter()
-            .map(|diagnostic| {
-              to_binding_error(diagnostic, route.options().paths.project_root.clone())
-            })
+            .map(|diagnostic| to_binding_error(diagnostic, route.options().paths.root.clone()))
             .collect();
           return Ok(napi::Either::A(BindingErrors::new(errors)));
         }
@@ -78,7 +77,7 @@ impl BindingEngine {
       )
       .await
       {
-        let error = to_binding_error(&err.into(), route.options().paths.project_root.clone());
+        let error = to_binding_error(&err.into(), route.options().paths.root.clone());
         return Ok(napi::Either::A(BindingErrors::new(vec![error])));
       }
 
@@ -89,11 +88,11 @@ impl BindingEngine {
   }
 
   #[napi]
-  // - `Bundler::close()/inner.close()` requires acquiring `&mut self`
+  // - `StaticAnalysisEngine::close()/inner.close()` requires acquiring `&mut self`
   // - Acquiring `&mut self` in async napi `fn` is unsafe, so we must use a sync `fn` here.
-  // - But `Bundler::close()/inner.close()` contains async cleanup operations, so we have await its returned future
+  // - But `StaticAnalysisEngine::close()/inner.close()` contains async cleanup operations, so we have await its returned future
   // in another async context instead of directly calling `close().await`.
-  // - This also affects how the code is written in `Bundler::close()/inner.close()`, see the implementation there for more details.
+  // - This also affects how the code is written in `StaticAnalysisEngine::close()/inner.close()`, see the implementation there for more details.
   pub fn close<'env>(&mut self, env: &'env Env) -> napi::Result<PromiseRaw<'env, ()>> {
     let cleanup_fut = self.inner.close();
     env.spawn_future(async move {

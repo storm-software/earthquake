@@ -16,8 +16,8 @@
 
  ------------------------------------------------------------------- */
 
-import type { Plugin } from "powerlines/types/plugin";
-import type { EarthquakePluginContext } from "../types/powerlines";
+import type { Plugin } from "powerlines";
+import type { EarthquakeBuildContext } from "../../types/build";
 import { replacePathTokens } from "../utilities/paths";
 
 /**
@@ -27,7 +27,7 @@ import { replacePathTokens } from "../utilities/paths";
  * @returns A Powerlines plugin.
  */
 export function robots<
-  TContext extends EarthquakePluginContext = EarthquakePluginContext
+  TContext extends EarthquakeBuildContext = EarthquakeBuildContext
 >(outputPath: string | false = "{publicPath}/robots.txt"): Plugin<TContext> {
   return {
     name: "earthquake:robots",

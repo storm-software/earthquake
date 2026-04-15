@@ -1,18 +1,37 @@
 {
   "name": "earthquake",
   "version": "0.0.1",
-  "type": "module",
+  "private": false,
   "description": "A framework to simplify partial prerendering, SSR, and SSG in React applications.",
-  "repository": {
-    "type": "github",
-    "url": "https://github.com/storm-software/storm-stack.git",
-    "directory": "packages/earthquake"
-  },
+  "keywords": [
+    "earthquake",
+    "powerlines",
+    "powerlines-plugin",
+    "react",
+    "rsc",
+    "react-server-components",
+    "partial-prerendering",
+    "ppr",
+    "ssr",
+    "ssg",
+    "vite",
+    "storm-software"
+  ],
   "homepage": "https://stormsoftware.com",
   "bugs": {
     "url": "https://stormsoftware.com/support",
     "email": "support@stormsoftware.com"
   },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/earthquake.git",
+    "directory": "packages/earthquake"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/storm-software"
+  },
+  "license": "Apache-2.0",
   "author": {
     "name": "Storm Software",
     "email": "contact@stormsoftware.com",
@@ -32,114 +51,39 @@
       "url": "https://stormsoftware.com"
     }
   ],
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/storm-software"
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "default": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
+    },
+    "./package.json": "./package.json"
   },
-  "license": "Apache-2.0",
-  "private": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "typings": "dist/index.d.mts",
+  "files": ["dist/**/*"],
   "scripts": {
     "artifacts": "napi artifacts --cwd ./src --package-json-path ../package.json -o=../artifacts --npm-dir ../npm",
     "prepublishOnly": "napi pre-publish -t npm --no-gh-release"
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.mts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      },
-      "default": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      }
-    },
-    "./index": {
-      "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      },
-      "default": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      }
-    },
-    "./build": {
-      "import": {
-        "types": "./dist/build/index.d.mts",
-        "default": "./dist/build/index.mjs"
-      },
-      "require": {
-        "types": "./dist/build/index.d.cts",
-        "default": "./dist/build/index.cjs"
-      },
-      "default": {
-        "types": "./dist/build/index.d.mts",
-        "default": "./dist/build/index.mjs"
-      }
-    },
-    "./powerlines": {
-      "import": {
-        "types": "./dist/powerlines.d.mts",
-        "default": "./dist/powerlines.mjs"
-      },
-      "require": {
-        "types": "./dist/powerlines.d.cts",
-        "default": "./dist/powerlines.cjs"
-      },
-      "default": {
-        "types": "./dist/powerlines.d.mts",
-        "default": "./dist/powerlines.mjs"
-      }
-    },
-    "./vite": {
-      "import": {
-        "types": "./dist/vite.d.mts",
-        "default": "./dist/vite.mjs"
-      },
-      "require": {
-        "types": "./dist/vite.d.cts",
-        "default": "./dist/vite.cjs"
-      },
-      "default": {
-        "types": "./dist/vite.d.mts",
-        "default": "./dist/vite.mjs"
-      }
-    }
-  },
-  "files": [
-    "dist/**/*"
-  ],
-  "keywords": [
-    "earthquake",
-    "powerlines",
-    "powerlines-plugin",
-    "react",
-    "rsc",
-    "react-server-components",
-    "partial-prerendering",
-    "ppr",
-    "ssr",
-    "ssg",
-    "vite",
-    "storm-software"
-  ],
   "dependencies": {
-    "@earthquake/tools-plugin-build": "workspace:*",
     "@napi-rs/wasm-runtime": "catalog:",
     "@oxc-project/types": "catalog:",
+    "@powerlines/core": "catalog:",
     "@powerlines/plugin-react": "catalog:",
+    "@powerlines/plugin-tsdown": "catalog:",
     "@powerlines/plugin-vite": "catalog:",
     "@stryke/path": "catalog:",
     "@stryke/type-checks": "catalog:",
@@ -158,6 +102,7 @@
     "@napi-rs/cli": "catalog:",
     "@napi-rs/wasm-runtime": "catalog:",
     "@powerlines/plugin-plugin": "catalog:",
+    "@powerlines/plugin-tsdown": "catalog:",
     "@storm-software/config-tools": "catalog:",
     "@types/estree": "catalog:",
     "@types/node": "catalog:",
@@ -166,6 +111,9 @@
     "signal-exit": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.19.1"
   },
   "publishConfig": {
     "access": "public"
@@ -197,8 +145,5 @@
       }
     },
     "dtsHeader": "type MaybePromise<T> = T | Promise<T>\ntype Nullable<T> = T | null | undefined\ntype VoidNullable<T = void> = T | null | undefined | void\nexport type BindingStringOrRegex = string | RegExp\ntype BindingResult<T> = { errors: BindingError[], isBindingErrors: boolean } | T\n\n"
-  },
-  "engines": {
-    "node": "^20.19.0 || >=22.19.1"
   }
 }

@@ -13,6 +13,7 @@ pub fn is_data_url(s: &str) -> bool {
   s.trim_start().starts_with("data:")
 }
 
+#[derive(Debug)]
 pub struct ParsedDataUrl<'a> {
   pub mime: &'a str,
   pub is_base64: bool,

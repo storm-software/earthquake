@@ -17,8 +17,8 @@
  ------------------------------------------------------------------- */
 
 import type { IsUndefined } from "@stryke/types/base";
-import { replacePathTokens as replacePathTokensBase } from "powerlines/plugin-utils/paths";
-import type { EarthquakePluginContext } from "../types/powerlines";
+import { replacePathTokens as replacePathTokensBase } from "powerlines/plugin-utils";
+import type { EarthquakeBuildContext } from "../../types/build";
 
 /**
  * Replaces tokens in the given path string with their corresponding values from the context.
@@ -46,10 +46,12 @@ import type { EarthquakePluginContext } from "../types/powerlines";
  * @returns The path string with tokens replaced by their corresponding values from the context.
  */
 export function replacePathTokens(
-  context: EarthquakePluginContext,
+  context: EarthquakeBuildContext,
   path?: string
 ): IsUndefined<typeof path> extends true ? undefined : string {
-  return replacePathTokensBase(context, path)
-    .replaceAll("{routesPath}", context.config.earthquake.routesPath)
-    .replaceAll("{publicPath}", context.earthquake.publicPath);
+  return (
+    replacePathTokensBase(context, path)
+      // .replaceAll("{routesPath}", context.config.input)
+      .replaceAll("{publicPath}", context.config.earthquake.publicPath)
+  );
 }

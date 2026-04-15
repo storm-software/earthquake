@@ -25,6 +25,9 @@ export default defineConfig({
   name: "earthquake",
   react: {},
   nx: {
-    depsCheck: true
+    depsCheck: false
+  },
+  tsdoc: {
+    configFile: "@powerlines/tsdoc/recommended.json"
   }
 });

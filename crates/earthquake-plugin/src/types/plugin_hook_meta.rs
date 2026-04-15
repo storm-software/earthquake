@@ -2,7 +2,7 @@ use earthquake_common::types::plugin_idx::PluginIdx;
 use oxc_index::IndexVec;
 
 use crate::{
-  pluginable::{IndexPluginable, SharedPluginable},
+  plugable::{IndexPlugable, SharedPlugable},
   types::hook_usage::HookUsage,
 };
 
@@ -31,7 +31,7 @@ pub struct PluginHookOrders {
 
 impl PluginHookOrders {
   pub fn new(
-    index_plugins: &IndexPluginable,
+    index_plugins: &IndexPlugable,
     plugin_usage_vec: &IndexVec<PluginIdx, HookUsage>,
   ) -> Self {
     Self {
@@ -45,8 +45,8 @@ impl PluginHookOrders {
   }
 
   fn sort_plugins_by_hook_meta(
-    index_plugins: &IndexPluginable,
-    get_hook_meta: impl Fn(PluginIdx, &SharedPluginable) -> Option<Option<PluginHookMeta>>,
+    index_plugins: &IndexPlugable,
+    get_hook_meta: impl Fn(PluginIdx, &SharedPlugable) -> Option<Option<PluginHookMeta>>,
   ) -> Vec<PluginIdx> {
     let mut pre_plugins = Vec::new();
     let mut post_plugins = Vec::new();

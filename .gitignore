@@ -9,8 +9,9 @@ tmp
 /out-tsc
 out
 .nx
-**/.storm
-# \!examples/**/.storm
+.storm
+.powerlines
+.rolldown
 
 # build
 
@@ -444,3 +445,7 @@ devenv.local.nix
 
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
+
+.claude/worktrees
+
+.claude/settings.local.json

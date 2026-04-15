@@ -9,16 +9,16 @@ use crate::{
   types::{hook_args::HookArgs, plugin_hook_meta::PluginHookMeta},
 };
 
-/// Shared pointer to a `Pluginable` trait object.
-pub type SharedPluginable = Arc<dyn Pluginable>;
+/// Shared pointer to a `Plugable` trait object.
+pub type SharedPlugable = Arc<dyn Plugable>;
 
-/// `Pluginable` is under the hood trait that rolldown to run. It's not recommended to use this trait directly.
+/// `Plugable` is the under the hood trait that earthquake needs to run. It's not recommended to use this trait directly.
 /// To create a plugin, you should use [Plugin] trait instead.
 ///
 /// The main reason we don't expose this trait is that it used `async_trait`, which make it rust-analyzer can't
 /// provide a good auto-completion experience.
 #[async_trait::async_trait]
-pub trait Pluginable: Any + Debug + Send + Sync + 'static {
+pub trait Plugable: Any + Debug + Send + Sync + 'static {
   /// Get the name of the plugin.
   fn call_name(&self) -> Cow<'static, str>;
 
@@ -56,5 +56,8 @@ pub trait Pluginable: Any + Debug + Send + Sync + 'static {
   fn call_hook_usage(&self) -> crate::types::hook_usage::HookUsage;
 }
 
-pub type IndexPluginable = IndexVec<PluginIdx, SharedPluginable>;
+/// An indexable collection of `Plugable` trait objects, keyed by `PluginIdx`.
+pub type IndexPlugable = IndexVec<PluginIdx, SharedPlugable>;
+
+/// An indexable collection of `PluginContext` objects, keyed by `PluginIdx`.
 pub type IndexPluginContext = IndexVec<PluginIdx, PluginContext>;

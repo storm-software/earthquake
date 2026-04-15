@@ -16,9 +16,7 @@
 
  ------------------------------------------------------------------- */
 
-import { isString } from "@stryke/type-checks/is-string";
 import { getRouteFromAssetPath } from "../../shared/router/helpers/get-route-from-asset-path";
-import type { EarthquakePluginContext } from "../types/powerlines";
 
 /**
  * Match a bundle path against a regex and return the corresponding route.
@@ -40,29 +38,29 @@ export default function matchBundle(
   return getRouteFromAssetPath(`/${result[1]}`);
 }
 
-/**
- * Get the route from an entrypoint file path.
- *
- * @param context - The Earthquake plugin context.
- * @param entryFile - The entrypoint file path.
- * @returns The route corresponding to the entrypoint file path, or null if no route matches.
- */
-export function getRouteFromEntrypoint(
-  context: EarthquakePluginContext,
-  entryFile: string
-): string | null {
-  const path = matchBundle(
-    new RegExp(`^${context.config.earthquake.routesPath}[/\\](.*)$`),
-    entryFile
-  );
-  if (isString(path) && !path) {
-    return "/";
-  }
+// /**
+//  * Get the route from an entrypoint file path.
+//  *
+//  * @param context - The Earthquake plugin context.
+//  * @param entryFile - The entrypoint file path.
+//  * @returns The route corresponding to the entrypoint file path, or null if no route matches.
+//  */
+// export function getRouteFromEntrypoint(
+//   context: EarthquakeBuildContext,
+//   entryFile: string
+// ): string | null {
+//   const path = matchBundle(
+//     new RegExp(`^${context.config.earthquake.routesPath}[/\\](.*)$`),
+//     entryFile
+//   );
+//   if (isString(path) && !path) {
+//     return "/";
+//   }
 
-  if (path) {
-    return path;
-  }
+//   if (path) {
+//     return path;
+//   }
 
-  // Potentially the passed item is a browser bundle so we try to match that also
-  return matchBundle(/^static[/\\]pages[/\\](.*)$/, entryFile);
-}
+//   // Potentially the passed item is a browser bundle so we try to match that also
+//   return matchBundle(/^static[/\\]pages[/\\](.*)$/, entryFile);
+// }

@@ -18,6 +18,7 @@ pub use route_handle::*;
   reason = "`route_span` emphasizes this's a span for this route, not a session level span"
 )]
 #[expect(clippy::rc_buffer, reason = "Arc is needed for multi-threaded usage")]
+#[derive(Debug)]
 pub struct Route<'a> {
   pub(crate) path: Utf8PathBuf,
   pub(crate) hash: Vec<u8>,
@@ -43,7 +44,7 @@ impl<'a> Route<'a> {
     warnings: Vec<EarthquakeDiagnostic>,
     route_span: Arc<tracing::Span>,
   ) -> Self {
-    let absolute_path = options.paths.workspace_root.join(&options.paths.routes_path).join(&path);
+    let absolute_path = options.paths.workspace_root.join(&options.paths.input_path).join(&path);
 
     let modules = RouteModuleKind::iterator()
       .par_bridge()
@@ -83,7 +84,7 @@ impl<'a> Route<'a> {
   }
 
   pub fn into_absolute_path(&self) -> Utf8PathBuf {
-    self.options.paths.workspace_root.join(&self.options.paths.routes_path).join(&self.path)
+    self.options.paths.workspace_root.join(&self.options.paths.input_path).join(&self.path)
   }
 
   #[tracing::instrument(level = "debug", skip_all, parent = &*self.route_span)]
@@ -91,12 +92,12 @@ impl<'a> Route<'a> {
   pub async fn prepare(&self) -> EarthquakeResult<RoutePrepareOutput> {
     async {
       self.trace_action_session_meta();
-      trace_action!(actions::RoutePrepareStart {
+      trace_action!(actions::RouteAnalyzeStart {
         action: "RoutePrepareStart",
         path: self.path.to_string()
       });
 
-      trace_action!(actions::RoutePrepareEnd {
+      trace_action!(actions::RouteAnalyzeEnd {
         action: "RoutePrepareEnd",
         path: self.path.to_string()
       });
@@ -120,7 +121,7 @@ impl<'a> Route<'a> {
           })
           .collect(),
         workspace_root: self.options.paths.workspace_root.to_string(),
-        project_root: self.options.paths.project_root.to_string(),
+        project_root: self.options.paths.root.to_string(),
         file: None,
       });
     }

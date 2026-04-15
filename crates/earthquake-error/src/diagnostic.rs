@@ -76,42 +76,42 @@ impl Diagnostic {
     }
   }
 
-  pub(crate) fn add_file(
-    &mut self,
-    filename: impl Into<ArcStr>,
-    content: impl Into<ArcStr>,
-  ) -> DiagnosticFileId {
-    let filename = DiagnosticFileId::from(filename.into());
-    let content = content.into();
-    debug_assert!(!self.files.contains_key(&filename));
-    self.files.insert(filename.clone(), content);
-    filename
-  }
+  //   pub(crate) fn add_file(
+  //     &mut self,
+  //     filename: impl Into<ArcStr>,
+  //     content: impl Into<ArcStr>,
+  //   ) -> DiagnosticFileId {
+  //     let filename = DiagnosticFileId::from(filename.into());
+  //     let content = content.into();
+  //     debug_assert!(!self.files.contains_key(&filename));
+  //     self.files.insert(filename.clone(), content);
+  //     filename
+  //   }
 
-  #[inline]
-  pub(crate) fn add_help(&mut self, message: String) -> &mut Self {
-    self.help = Some(message);
-    self
-  }
+  //   #[inline]
+  //   pub(crate) fn add_help(&mut self, message: String) -> &mut Self {
+  //     self.help = Some(message);
+  //     self
+  //   }
 
-  #[inline]
-  pub(crate) fn add_note(&mut self, message: String) -> &mut Self {
-    self.note = Some(message);
-    self
-  }
+  //   #[inline]
+  //   pub(crate) fn add_note(&mut self, message: String) -> &mut Self {
+  //     self.note = Some(message);
+  //     self
+  //   }
 
-  pub(crate) fn add_label(
-    &mut self,
-    file_id: &DiagnosticFileId,
-    range: impl Into<Range<u32>>,
-    message: String,
-  ) -> &mut Self {
-    let range = range.into();
-    let range = range.start as usize..range.end as usize;
-    let label = Label::new(LabelSpan(file_id.0.clone().into(), range)).with_message(message);
-    self.labels.push(label);
-    self
-  }
+  //   pub(crate) fn add_label(
+  //     &mut self,
+  //     file_id: &DiagnosticFileId,
+  //     range: impl Into<Range<u32>>,
+  //     message: String,
+  //   ) -> &mut Self {
+  //     let range = range.into();
+  //     let range = range.start as usize..range.end as usize;
+  //     let label = Label::new(LabelSpan(file_id.0.clone().into(), range)).with_message(message);
+  //     self.labels.push(label);
+  //     self
+  //   }
 
   fn init_report_builder(&self) -> AriadneReportBuilder {
     let mut message = self.title.clone();

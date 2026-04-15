@@ -24,8 +24,6 @@ pub mod route_module_kind;
 pub mod route_modules;
 /// Module containing the RoutePrepareOutput type.
 pub mod route_prepare_output;
-/// Module containing the OutputMode type.
-pub mod storage_preset;
 
 pub use context::*;
 pub use metadata::*;
@@ -40,4 +38,3 @@ pub use route_module::*;
 pub use route_module_kind::*;
 pub use route_modules::*;
 pub use route_prepare_output::*;
-pub use storage_preset::*;

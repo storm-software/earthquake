@@ -1,18 +1,30 @@
 {
   "name": "@earthquake/tsconfig",
   "version": "0.0.1",
-  "type": "module",
+  "private": false,
   "description": "A package containing shared TypeScript configuration files (tsconfig.json) used in Earthquake projects.",
-  "repository": {
-    "type": "github",
-    "url": "https://github.com/storm-software/earthquake.git",
-    "directory": "packages/tsconfig"
-  },
+  "keywords": [
+    "earthquake",
+    "powerlines",
+    "storm-software",
+    "typescript",
+    "tsconfig"
+  ],
   "homepage": "https://stormsoftware.com",
   "bugs": {
     "url": "https://stormsoftware.com/support",
     "email": "support@stormsoftware.com"
   },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/earthquake.git",
+    "directory": "packages/tsconfig"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/storm-software"
+  },
+  "license": "Apache-2.0",
   "author": {
     "name": "Storm Software",
     "email": "contact@stormsoftware.com",
@@ -32,38 +44,22 @@
       "url": "https://stormsoftware.com"
     }
   ],
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/storm-software"
-  },
-  "license": "Apache-2.0",
-  "private": false,
+  "sideEffects": false,
+  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     "./base.json": "./base.json",
     "./recommended.json": "./recommended.json",
     "./strict.json": "./strict.json"
   },
-  "files": [
-    "./base.json",
-    "./recommended.json",
-    "./strict.json"
-  ],
-  "keywords": [
-    "earthquake",
-    "powerlines",
-    "storm-software",
-    "typescript",
-    "tsconfig"
-  ],
-  "sideEffects": false,
+  "files": ["./base.json", "./recommended.json", "./strict.json"],
+  "devDependencies": {
+    "@powerlines/tsconfig": "catalog:"
+  },
   "peerDependenciesMeta": {
     "@powerlines/tsconfig": {
       "optional": false
     }
-  },
-  "devDependencies": {
-    "@powerlines/tsconfig": "catalog:"
   },
   "publishConfig": {
     "access": "public"

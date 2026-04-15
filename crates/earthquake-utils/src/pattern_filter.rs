@@ -31,6 +31,8 @@ impl AsRef<StringOrRegex> for StringOrRegex {
     self
   }
 }
+
+#[derive(Debug)]
 pub enum StringOrRegexMatchKind<'a> {
   Code,
   // The cwd of id

@@ -5,6 +5,6 @@
   "namespace": "earthquake",
   "repository": "https://github.com/storm-software/earthquake",
   "packageManager": "pnpm",
-  "logLevel": "trace",
+  "logLevel": "info",
   "docs": "https://docs.stormsoftware.com/projects/earthquake"
 }

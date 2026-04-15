@@ -3,6 +3,7 @@ use std::path::Path;
 use camino::Utf8PathBuf;
 use sugar_path::SugarPath;
 
+#[derive(Debug)]
 pub struct DiagnosticOptions {
   pub path: Utf8PathBuf,
 }

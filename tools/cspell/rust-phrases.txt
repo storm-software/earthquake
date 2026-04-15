@@ -1,0 +1,4 @@
+armv
+gnueabihf
+ohos
+wasip

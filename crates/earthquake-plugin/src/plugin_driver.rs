@@ -12,23 +12,24 @@ use std::{
 use tracing::Instrument;
 
 use crate::{
+  plugable::{IndexPlugable, IndexPluginContext, SharedPlugable},
   plugin::HookReturn,
   plugin_context::{
     PluginContext, native_plugin_context::NativePluginContextImpl,
     plugin_context_meta::PluginContextMeta,
   },
-  pluginable::{IndexPluginContext, IndexPluginable, SharedPluginable},
   types::{hook_args::HookArgs, plugin_hook_meta::PluginHookOrders},
 };
 
 pub type SharedPluginDriver = Arc<PluginDriver>;
 
+#[derive(Debug)]
 pub struct PluginDriverFactory {
-  plugins: Vec<SharedPluginable>,
+  plugins: Vec<SharedPlugable>,
 }
 
 impl PluginDriverFactory {
-  pub fn new(plugins: Vec<SharedPluginable>) -> Self {
+  pub fn new(plugins: Vec<SharedPlugable>) -> Self {
     Self { plugins }
   }
 
@@ -45,7 +46,7 @@ impl PluginDriverFactory {
     let route_span_arc = Arc::clone(initial_route_span);
 
     Arc::new_cyclic(|plugin_driver| {
-      let mut index_plugins = IndexPluginable::with_capacity(self.plugins.len());
+      let mut index_plugins = IndexPlugable::with_capacity(self.plugins.len());
       let mut index_contexts = IndexPluginContext::with_capacity(self.plugins.len());
 
       self.plugins.iter().for_each(|plugin| {
@@ -74,7 +75,7 @@ impl PluginDriverFactory {
 
 #[derive(Debug)]
 pub struct PluginDriver {
-  plugins: IndexPluginable,
+  plugins: IndexPlugable,
   contexts: IndexPluginContext,
   hook_orders: PluginHookOrders,
 }
@@ -83,7 +84,7 @@ impl PluginDriver {
   pub fn iter_plugin_with_context_by_order<'me>(
     &'me self,
     ordered_plugins: &'me [PluginIdx],
-  ) -> impl Iterator<Item = (PluginIdx, &'me SharedPluginable, &'me PluginContext)> + 'me {
+  ) -> impl Iterator<Item = (PluginIdx, &'me SharedPlugable, &'me PluginContext)> + 'me {
     ordered_plugins.iter().copied().map(move |idx| {
       let plugin = &self.plugins[idx];
       let context = &self.contexts[idx];
@@ -91,7 +92,7 @@ impl PluginDriver {
     })
   }
 
-  pub fn plugins(&self) -> &IndexPluginable {
+  pub fn plugins(&self) -> &IndexPlugable {
     &self.plugins
   }
 

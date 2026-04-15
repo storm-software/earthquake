@@ -35,7 +35,7 @@ use earthquake_plugin::SharedPluginDriver;
 /// let watch_files = handle.watch_files();
 /// handle.plugin_driver().close_bundle().await?;
 /// ```
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct RouteHandle {
   pub(crate) options: SharedNormalizedOptions,
   pub(crate) plugin_driver: SharedPluginDriver,

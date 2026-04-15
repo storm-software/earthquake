@@ -16,12 +16,12 @@
 
  ------------------------------------------------------------------- */
 
-/* eslint-disable camelcase */
-
 import { isFunction } from "@stryke/type-checks/is-function";
-import type { Plugin } from "powerlines/types/plugin";
-import type { UNSTABLE_EarthquakePlugin } from "../types/internal";
-import type { EarthquakePluginContext } from "../types/powerlines";
+import type { Plugin } from "powerlines";
+import type {
+  EarthquakeBuildContext,
+  EarthquakePlugin
+} from "../../types/build";
 
 /**
  * A type-check function to determine if the user provided plugin is an earthquake plugin with earthquake specific hook functions
@@ -29,8 +29,8 @@ import type { EarthquakePluginContext } from "../types/powerlines";
  * @param plugin - The plugin object to type-check
  * @returns An indicator specifying if the user provided plugin is an earthquake plugin with earthquake specific hook functions
  */
-export function isEarthquakePlugin<TContext extends EarthquakePluginContext>(
+export function isEarthquakePlugin<TContext extends EarthquakeBuildContext>(
   plugin: Plugin<TContext>
-): plugin is UNSTABLE_EarthquakePlugin<TContext> {
+): plugin is EarthquakePlugin<TContext> {
   return isFunction(plugin.api?.layout);
 }

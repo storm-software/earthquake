@@ -4,7 +4,6 @@ pub mod binding_log_level;
 pub mod binding_options;
 pub mod binding_output;
 pub mod binding_plugin_api;
-pub mod binding_storage_preset;
 pub mod binding_string_or_regex;
 pub mod js_callback;
 pub mod js_regex;

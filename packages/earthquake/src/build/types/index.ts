@@ -17,8 +17,5 @@
  ------------------------------------------------------------------- */
 
 export * from "./assets";
-export * from "./context";
 export * from "./options";
-export * from "./plugin";
-export * from "./powerlines";
 export * from "./route";

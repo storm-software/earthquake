@@ -1,7 +1,10 @@
+#![expect(clippy::missing_debug_implementations)]
+
 use napi::Either;
 
 /// Error emitted from native side, it only contains kind and message, no stack trace.
 #[napi_derive::napi(object, object_from_js = false)]
+#[derive(Debug)]
 pub struct NativeError {
   pub kind: String,
   pub message: String,

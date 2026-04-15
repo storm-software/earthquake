@@ -16,41 +16,26 @@
 
  ------------------------------------------------------------------- */
 
-import _plugin from "@powerlines/plugin-plugin";
-import defu from "defu";
-import type { ConfigResult, Plugin } from "powerlines/types/plugin";
-import type {
-  InternalBuildPluginContext,
-  InternalBuildPluginOptions
-} from "./types/plugin";
+import powerlines from "@powerlines/plugin-plugin";
+import type { Plugin } from "powerlines";
+import type { InternalBuildPluginContext } from "./types/plugin";
 
 export * from "./types";
 
 /**
- * The internal Earthquake Build plugin for Powerlines.
+ * The internal Earthquake build Powerlines plugin.
  *
  * @internal
- *
- * @param options - The internal earthquake build plugin user configuration options.
- * @returns A Powerlines plugin that is used to build the `earthquake` package.
  */
 export const plugin = <
   TContext extends InternalBuildPluginContext = InternalBuildPluginContext
->(
-  options: InternalBuildPluginOptions = {}
-): Plugin<TContext> => {
-  return {
-    name: "internal-build",
-    dependsOn: [
-      _plugin({
-        alloy: false,
-        ...options
-      })
-    ],
-    config() {
-      return defu(options, {}) as ConfigResult<TContext>;
+>(): Plugin<TContext>[] => {
+  return [
+    powerlines(),
+    {
+      name: "internal-build"
     }
-  } as Plugin<TContext>;
+  ] as Plugin<TContext>[];
 };
 
 export default plugin;

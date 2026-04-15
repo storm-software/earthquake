@@ -16,9 +16,8 @@
 
  ------------------------------------------------------------------- */
 
-import build from "@earthquake/tools-plugin-build";
-import type { BuildConfig, BuildResolvedConfig, UserConfig } from "powerlines";
-import { defineConfig } from "powerlines";
+import tsdown from "@powerlines/plugin-tsdown";
+import { defineConfig } from "powerlines/config";
 
 // interface CopyAddonOptions {
 //   isCI: boolean;
@@ -182,17 +181,22 @@ import { defineConfig } from "powerlines";
 //   };
 // }
 
-const config: UserConfig<BuildConfig, BuildResolvedConfig, any> = defineConfig({
+const config = defineConfig({
   skipCache: true,
-  entry: [
+  input: [
     "./src/index.ts",
     "./src/build/index.ts",
+    "./src/config.ts",
+    "./src/build/api.ts",
+    "./src/build/plugin.ts",
     "./src/powerlines.ts",
     "./src/vite.ts"
   ],
-  plugins: [build()],
-  external: ["@earthquake/binding-*", "earthquake-binding.*"],
-  skipNodeModulesBundle: true
+  plugins: [tsdown()],
+  resolve: {
+    external: ["@earthquake/binding-*", "earthquake-binding.*"],
+    skipNodeModulesBundle: true
+  }
 });
 
 export default config;

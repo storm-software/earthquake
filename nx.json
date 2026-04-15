@@ -1,5 +1,5 @@
 {
-  "extends": "@storm-software/workspace-tools/config/base.json",
+  "extends": "@storm-software/workspace-tools/config/recommended.json",
   "release": {
     "groups": {
       "packages": {
@@ -22,7 +22,6 @@
     },
     "@storm-software/workspace-tools/plugins/typescript",
     "@storm-software/workspace-tools/plugins/typescript/untyped",
-    "@storm-software/workspace-tools/plugins/typescript/tsup",
     "@storm-software/workspace-tools/plugins/rust",
     {
       "plugin": "@powerlines/nx/plugin",
@@ -46,5 +45,6 @@
   "sync": {
     "applyChanges": true,
     "globalGenerators": ["@nx/js:typescript-sync"]
-  }
+  },
+  "analytics": false
 }

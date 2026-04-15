@@ -8,18 +8,32 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub enum MetadataWithAltItem {
   /// Static metadata.
-  Static { path: Utf8PathBuf, alt_path: Option<Utf8PathBuf> },
+  Static {
+    /// The path to the metadata file.
+    path: Utf8PathBuf,
+    /// An optional path to an "alt" text file that can provide alternative content for the metadata.
+    alt_path: Option<Utf8PathBuf>,
+  },
   /// Dynamic metadata.
-  Dynamic { path: Utf8PathBuf },
+  Dynamic {
+    /// The path to the metadata file.
+    path: Utf8PathBuf,
+  },
 }
 
 /// A single metadata file.
 #[derive(Clone, Debug, Hash, Serialize, Deserialize, PartialEq, Eq)]
 pub enum MetadataItem {
   /// Static metadata.
-  Static { path: Utf8PathBuf },
+  Static {
+    /// The path to the metadata file.
+    path: Utf8PathBuf,
+  },
   /// Dynamic metadata.
-  Dynamic { path: Utf8PathBuf },
+  Dynamic {
+    /// The path to the metadata file.
+    path: Utf8PathBuf,
+  },
 }
 
 /// Get the route name for a metadata item.

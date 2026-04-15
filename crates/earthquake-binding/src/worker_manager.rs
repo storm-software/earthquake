@@ -42,6 +42,7 @@ impl WorkerManager {
 }
 
 #[cfg(not(target_family = "wasm"))]
+#[derive(Debug)]
 pub struct WorkerSemaphorePermit {
   worker_index: u16,
   sender: Sender<u16>,
@@ -65,6 +66,7 @@ impl Drop for WorkerSemaphorePermit {
 }
 
 #[cfg(not(target_family = "wasm"))]
+#[derive(Debug)]
 pub struct WorkerAllSemaphorePermit {
   worker_count: u16,
   sender: Sender<u16>,

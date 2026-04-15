@@ -16,10 +16,10 @@
 
  ------------------------------------------------------------------- */
 
-import type { ViteUserConfig } from "powerlines/types/config";
-import vite from "powerlines/vite";
+import type { VitePluginOptions } from "@powerlines/plugin-vite";
+import vite from "@powerlines/plugin-vite";
 
-export async function plugin(options: Partial<ViteUserConfig>) {
+export async function plugin(options: VitePluginOptions) {
   return vite(options);
 }
 

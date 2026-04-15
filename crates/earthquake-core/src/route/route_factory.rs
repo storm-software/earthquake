@@ -10,22 +10,21 @@ use std::{
 use camino::Utf8PathBuf;
 use earthquake_common::{NormalizedOptions, SharedNormalizedOptions};
 use earthquake_error::{EarthquakeDiagnostic, EarthquakeResult};
-use earthquake_plugin::{PluginDriverFactory, pluginable::SharedPluginable};
+use earthquake_plugin::{PluginDriverFactory, plugable::SharedPlugable};
 use earthquake_tracing::{Session, generate_route_id, try_init_tracing};
-use storm_config::workspace_config::WorkspaceConfig;
 
 use crate::{Route, RouteHandle};
 
 #[derive(Debug, Default)]
-pub struct RouteFactoryOptions {
+pub(crate) struct RouteFactoryOptions {
   pub options: NormalizedOptions,
-  pub plugins: Vec<SharedPluginable>,
+  pub plugins: Vec<SharedPlugable>,
   pub session: Option<Session>,
 }
 
-pub struct RouteFactory {
+#[derive(Debug)]
+pub(crate) struct RouteFactory {
   pub(super) options: SharedNormalizedOptions,
-  pub(super) config: WorkspaceConfig,
   pub(super) session: Session,
   pub(super) plugin_driver_factory: PluginDriverFactory,
   pub warnings: Mutex<Vec<EarthquakeDiagnostic>>,
@@ -38,10 +37,6 @@ impl RouteFactory {
   pub(crate) fn new(opts: RouteFactoryOptions) -> Self {
     let session = opts.session.unwrap_or_else(Session::dummy);
 
-    let config =
-      WorkspaceConfig::from_workspace_root(opts.options.paths.workspace_root.as_std_path())
-        .expect("Unable to resolve the workspace configuration");
-
     let maybe_guard = if opts.options.disable_tracing { None } else { try_init_tracing() };
 
     let plugin_driver_factory = PluginDriverFactory::new(opts.plugins);
@@ -49,7 +44,6 @@ impl RouteFactory {
     Self {
       plugin_driver_factory,
       options: Arc::new(opts.options),
-      config,
       warnings: Mutex::new(Vec::new()),
       _log_guard: maybe_guard,
       session,
@@ -60,7 +54,7 @@ impl RouteFactory {
 
   /// A function to create a `Route` object (using `options.paths.routes_path` as the root)
   pub(crate) fn create<'a>(&self) -> EarthquakeResult<Route<'a>> {
-    self.create_route(self.options.paths.routes_path.clone(), None)
+    self.create_route(self.options.paths.input_path.clone(), None)
   }
 
   fn generate_unique_route_span(&self) -> Arc<tracing::Span> {
@@ -107,10 +101,7 @@ impl RouteFactory {
             };
 
             let absolute_path =
-              Utf8PathBuf::from_path_buf(entry.path()).expect("Unable to determine route path")
-            else {
-              return Err(EarthquakeDiagnostic::path_is_not_valid_utf8(entry.path()).into());
-            };
+              Utf8PathBuf::from_path_buf(entry.path()).expect("Unable to determine route path");
 
             let relative_path = match absolute_path.strip_prefix(route.into_absolute_path()) {
               Ok(relative_path) => relative_path.to_path_buf(),
@@ -143,7 +134,7 @@ impl RouteFactory {
   }
 
   //   fn check_prefer_builtin_feature(
-  //     plugins: &[SharedPluginable],
+  //     plugins: &[SharedPlugable],
   //     options: &NormalizedOptions,
   //     warning: &mut Vec<EarthquakeDiagnostic>,
   //   ) {

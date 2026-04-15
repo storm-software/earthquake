@@ -2,7 +2,7 @@
 //! - All kinds that will terminate the build process should be named with a postfix "Error".
 use std::fmt::Display;
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum IssueKind {
   // --- These kinds are copied from rollup: https://github.com/rollup/rollup/blob/0b665c31833525c923c0fc20f43ebfca748c6670/src/utils/logs.ts#L102-L179
   AmbiguousExternalNamespaceError = 0,

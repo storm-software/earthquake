@@ -34,7 +34,7 @@ use napi_derive::napi;
 #[global_allocator]
 static ALLOC: mimalloc_safe::MiMalloc = mimalloc_safe::MiMalloc;
 
-pub mod binding_engine;
+pub mod binding_static_analysis_engine;
 pub mod types;
 pub mod utils;
 pub mod worker_manager;

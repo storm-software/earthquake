@@ -29,21 +29,19 @@ jobs:
   start:
     name: "Send in process notification"
     runs-on: ubuntu-latest
+    environment: production
     permissions:
       contents: write
       id-token: write
-    if:
-      github.repository == 'storm-software/earthquake' && (github.ref ==
+    if: github.repository == 'storm-software/earthquake' && (github.ref ==
       'refs/heads/main' || github.ref == 'refs/heads/next' || github.ref ==
       'refs/heads/experimental')
     steps:
       - name: Send notification - Deployment started
         uses: storm-software/action-notify@main
         with:
-          title:
-            "Deployment for ${{ github.repository }} has started (In Progress)"
-          subtitle:
-            "Deployment for ${{ github.repository }} has started - #${{
+          title: "Deployment for ${{ github.repository }} has started (In Progress)"
+          subtitle: "Deployment for ${{ github.repository }} has started - #${{
             github.run_number }}"
           description:
             "Deployment for ${{ github.repository }} is currently in process -
@@ -59,10 +57,10 @@ jobs:
 
   process:
     name: "Release"
-    if:
-      always() && !cancelled() && !contains(needs.*.result, 'failure') &&
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') &&
       github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    environment: production
     permissions:
       contents: write
       id-token: write
@@ -97,8 +95,7 @@ jobs:
           gpg-passphrase: ${{ secrets.STORM_BOT_GPG_PASSPHRASE }}
           storm-bot-github-token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
-      - name:
-          Derive appropriate SHAs for base and head for `nx affected` commands
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
         id: setSHAs
         uses: nrwl/nx-set-shas@v4
         with:
@@ -108,15 +105,15 @@ jobs:
           error-on-no-successful-workflow: true
 
       - name: Release repository updates
-        run:
-          devenv shell release ${{ steps.setSHAs.outputs.base }} ${{
-          steps.setSHAs.outputs.head }}
+        run: devenv --profile production --no-tui --no-reload shell release ${{
+          steps.setSHAs.outputs.base }} ${{ steps.setSHAs.outputs.head }}
         env:
           NX_BASE: ${{ steps.setSHAs.outputs.base }}
           NX_HEAD: ${{ steps.setSHAs.outputs.head }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
           STORM_BOT_GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          STORM_BOT_CARGO_TOKEN: ${{ secrets.STORM_BOT_CARGO_TOKEN }}
           STORM_WORKSPACE_ROOT: ${{ github.workspace }}
           STORM_REPOSITORY: ${{ github.repositoryUrl }}
           NPM_TOKEN: ${{ secrets.STORM_BOT_NPM_TOKEN }}
@@ -129,20 +126,21 @@ jobs:
     if: ${{ success() }}
     name: Send success notification
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Send notification - Deployment successful
         uses: storm-software/action-notify@main
         with:
-          title:
-            "Deployment for ${{ github.repository }} has finished (Success)"
+          title: "Deployment for ${{ github.repository }} has finished (Success)"
           subtitle:
             "Deployment for ${{ github.repository }} has finished successfully -
             #${{ github.run_number }}"
           description:
-            "Deployment for ${{ github.repository }} has finished successfully -
-            #${{ github.run_number }}. Click here to view the changes associated
-            with this deployment: ${{ github.event.pull_request.html_url ||
-            github.event.head_commit.url }} "
+            "Deployment for ${{ github.repository }} has finished successfully
+            - #${{ github.run_number }}. Click here to view the changes
+            associated with this deployment: ${{
+            github.event.pull_request.html_url || github.event.head_commit.url
+            }} "
           color: 556891
           status: "Success"
           slack-token: ${{ secrets.STORM_BOT_SLACK_TOKEN }}
@@ -156,15 +154,15 @@ jobs:
     if: ${{ failure() }}
     name: Send failure notification
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Send notification - Deployment successful
         uses: storm-software/action-notify@main
         with:
-          title:
-            "Deployment for ${{ github.repository }} has finished (Failure)"
+          title: "Deployment for ${{ github.repository }} has finished (Failure)"
           subtitle:
-            "Deployment for ${{ github.repository }} finished with failures -
-            #${{ github.run_number }}"
+            "Deployment for ${{ github.repository }} finished with failures - #${{
+            github.run_number }}"
           description:
             "Deployment for ${{ github.repository }} finished with failures -
             #${{ github.run_number }}. Click here to view the changes associated
@@ -183,19 +181,19 @@ jobs:
     if: ${{ cancelled() }}
     name: Send cancelled notification
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Send notification - Deployment cancelled
         uses: storm-software/action-notify@main
         with:
-          title:
-            "Deployment for ${{ github.repository }} has finished (Cancelled)"
+          title: "Deployment for ${{ github.repository }} has finished (Cancelled)"
           subtitle:
             "Deployment for ${{ github.repository }} has been cancelled - #${{
             github.run_number }}"
           description:
-            "Deployment for ${{ github.repository }} was stopped before it could
-            complete - #${{ github.run_number }}. Click here to view the changes
-            associated with this deployment: ${{
+            "Deployment for ${{ github.repository }} was stopped before it
+            could complete - #${{ github.run_number }}. Click here to view the
+            changes associated with this deployment: ${{
             github.event.pull_request.html_url || github.event.head_commit.url
             }}."
           color: 16565273

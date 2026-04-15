@@ -15,3 +15,18 @@
  SPDX-License-Identifier:  Apache-2.0
 
  ------------------------------------------------------------------- */
+
+import type { UserConfig } from "./types/config";
+
+/**
+ * A utility function to define a Shell Shock user configuration.
+ *
+ * @remarks
+ * This function is used to create a user configuration object for Shell Shock projects. It ensures that the configuration adheres to the expected structure.
+ *
+ * @param config - A partial user configuration object.
+ * @returns A complete user configuration object.
+ */
+export function defineConfig(config: Partial<UserConfig>): UserConfig {
+  return config as UserConfig;
+}

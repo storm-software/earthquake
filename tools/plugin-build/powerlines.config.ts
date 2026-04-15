@@ -18,16 +18,12 @@
 
 import plugin from "@powerlines/plugin-plugin";
 import type { UserConfig } from "powerlines";
-import { defineConfig } from "powerlines";
+import { defineConfig } from "powerlines/config";
 
 const config: UserConfig = defineConfig({
   skipCache: true,
-  entry: ["./src/index.ts"],
-  plugins: [
-    plugin({
-      alloy: false
-    })
-  ]
+  input: "src/index.ts",
+  plugins: [plugin()]
 });
 
 export default config;

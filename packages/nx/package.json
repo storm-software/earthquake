@@ -152,19 +152,14 @@
   "typings": "dist/index.d.ts",
   "dependencies": {
     "@nx/devkit": "catalog:",
-    "@powerlines/nx": "catalog:",
-    "@storm-software/config": "catalog:",
-    "@storm-software/config-tools": "catalog:",
-    "@storm-software/workspace-tools": "catalog:",
-    "@stryke/type-checks": "catalog:",
-    "defu": "catalog:",
-    "earthquake": "workspace:*",
-    "jiti": "catalog:",
-    "nx": "catalog:"
+    "@powerlines/plugin-tsdown": "catalog:",
+    "@powerlines/plugin-untyped": "catalog:",
+    "powerlines": "catalog:",
+    "@powerlines/nx": "catalog:"
   },
   "devDependencies": {
     "@nx/workspace": "catalog:",
-    "@powerlines/plugin-tsup": "catalog:",
+    "@powerlines/plugin-tsdown": "catalog:",
     "@powerlines/plugin-untyped": "catalog:",
     "@storm-software/testing-tools": "catalog:",
     "@types/node": "catalog:",

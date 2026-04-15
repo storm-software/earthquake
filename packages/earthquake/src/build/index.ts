@@ -16,19 +16,10 @@
 
  ------------------------------------------------------------------- */
 
-import PowerlinesAPI from "powerlines";
-import type { UserConfig } from "../config/types/user-config";
+import { EarthquakeAPI, createEarthquake } from "./api";
 
-export { plugin } from "./plugin";
 export * from "./types";
 
-/**
- * Initialize an Earthquake API instance
- *
- * @param workspaceRoot - The directory of the underlying workspace the Earthquake project exists in
- * @param config - An object containing the configuration required to run Earthquake tasks.
- * @returns A new instance of the Earthquake API
- */
-export async function createApi(workspaceRoot: string, config: UserConfig) {
-  return PowerlinesAPI.from(workspaceRoot, config);
-}
+// eslint-disable-next-line perfectionist/sort-named-exports
+export { EarthquakeAPI, createEarthquake };
+export default EarthquakeAPI;

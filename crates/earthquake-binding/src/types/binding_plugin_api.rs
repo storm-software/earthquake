@@ -3,44 +3,51 @@ use derive_more::Debug;
 use napi::bindgen_prelude::FnArgs;
 
 #[napi_derive::napi(object)]
-#[derive(Default)]
-pub struct BindingPluginLayoutData {
+#[derive(Default, Debug)]
+/// Data passed to plugin hooks related to layout resolution.
+pub struct BindingPluginLayoutParams {
+  /// The path of the layout being resolved.
   pub path: String,
-  pub directive: Option<String>,
+  /// The code of the layout being resolved.
+  pub code: String,
 }
 
 #[napi_derive::napi(object)]
-#[derive(Default)]
-pub struct BindingPluginPageData {
+#[derive(Default, Debug)]
+/// Data passed to plugin hooks related to page resolution.
+pub struct BindingPluginPageParams {
+  /// The path of the page being resolved.
   pub path: String,
-  pub directive: Option<String>,
+  /// The code of the page being resolved.
+  pub code: String,
 }
 
 #[napi_derive::napi(object, object_to_js = false)]
 #[derive(Debug, Default)]
+/// Options for the plugin API exposed to JavaScript.
 pub struct BindingPluginApiOptions {
-  #[napi(ts_type = "(path: string, opts: BindingPluginLayoutData) => MaybePromise<VoidNullable>")]
+  #[napi(ts_type = "(params: BindingPluginLayoutParams) => MaybePromise<VoidNullable>")]
   #[debug(skip)]
   /// Callback for layout resolution.
-  pub layout_pre: Option<MaybeAsyncJsCallback<FnArgs<(String, BindingPluginLayoutData)>>>,
-  #[napi(ts_type = "(path: string, opts: BindingPluginLayoutData) => MaybePromise<VoidNullable>")]
+  pub layout_pre: Option<MaybeAsyncJsCallback<FnArgs<(BindingPluginLayoutParams,)>>>,
+  #[napi(ts_type = "(params: BindingPluginLayoutParams) => MaybePromise<VoidNullable>")]
   #[debug(skip)]
   /// Callback for layout resolution.
-  pub layout: Option<MaybeAsyncJsCallback<FnArgs<(String, BindingPluginLayoutData)>>>,
-  #[napi(ts_type = "(path: string, opts: BindingPluginLayoutData) => MaybePromise<VoidNullable>")]
+  pub layout: Option<MaybeAsyncJsCallback<FnArgs<(BindingPluginLayoutParams,)>>>,
+  #[napi(ts_type = "(params: BindingPluginLayoutParams) => MaybePromise<VoidNullable>")]
   #[debug(skip)]
   /// Callback for layout resolution.
-  pub layout_post: Option<MaybeAsyncJsCallback<FnArgs<(String, BindingPluginLayoutData)>>>,
-  #[napi(ts_type = "(path: string, opts: BindingPluginPageData) => MaybePromise<VoidNullable>")]
+  pub layout_post: Option<MaybeAsyncJsCallback<FnArgs<(BindingPluginLayoutParams,)>>>,
+  #[napi(ts_type = "(params: BindingPluginPageParams) => MaybePromise<VoidNullable>")]
   #[debug(skip)]
   /// Callback for page resolution.
-  pub page_pre: Option<MaybeAsyncJsCallback<FnArgs<(String, BindingPluginPageData)>>>,
-  #[napi(ts_type = "(path: string, opts: BindingPluginPageData) => MaybePromise<VoidNullable>")]
+  pub page_pre: Option<MaybeAsyncJsCallback<FnArgs<(BindingPluginPageParams,)>>>,
+  #[napi(ts_type = "(params: BindingPluginPageParams) => MaybePromise<VoidNullable>")]
   #[debug(skip)]
   /// Callback for page resolution.
-  pub page: Option<MaybeAsyncJsCallback<FnArgs<(String, BindingPluginPageData)>>>,
-  #[napi(ts_type = "(path: string, opts: BindingPluginPageData) => MaybePromise<VoidNullable>")]
+  pub page: Option<MaybeAsyncJsCallback<FnArgs<(BindingPluginPageParams,)>>>,
+  #[napi(ts_type = "(params: BindingPluginPageParams) => MaybePromise<VoidNullable>")]
   #[debug(skip)]
   /// Callback for page resolution.
-  pub page_post: Option<MaybeAsyncJsCallback<FnArgs<(String, BindingPluginPageData)>>>,
+  pub page_post: Option<MaybeAsyncJsCallback<FnArgs<(BindingPluginPageParams,)>>>,
 }

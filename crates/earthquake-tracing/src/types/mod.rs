@@ -1,4 +1,4 @@
-#[derive(ts_rs::TS, serde::Serialize)]
+#[derive(ts_rs::TS, serde::Serialize, Debug)]
 #[ts(export)]
 pub struct InputItem {
   /// For `input: { main: './main.js' }`, `./main.js` has the name `main`.
@@ -8,7 +8,7 @@ pub struct InputItem {
   pub filename: String,
 }
 
-#[derive(ts_rs::TS, serde::Serialize)]
+#[derive(ts_rs::TS, serde::Serialize, Debug)]
 #[ts(export)]
 pub struct PluginItem {
   pub name: String,

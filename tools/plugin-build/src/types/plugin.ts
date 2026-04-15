@@ -21,16 +21,15 @@ import type {
   PluginPluginResolvedConfig,
   PluginPluginUserConfig
 } from "@powerlines/plugin-plugin/types/plugin";
-import type { PluginContext } from "powerlines/types/context";
+import type { PluginContext } from "powerlines";
 
 export interface InternalBuildPluginOptions extends PluginPluginOptions {}
 
 export interface InternalBuildPluginUserConfig extends PluginPluginUserConfig {}
 
-export interface InternalBuildPluginResolvedConfig
-  extends PluginPluginResolvedConfig {}
+export interface InternalBuildPluginResolvedConfig extends PluginPluginResolvedConfig {}
 
 export type InternalBuildPluginContext<
-  TResolvedConfig extends
-    InternalBuildPluginResolvedConfig = InternalBuildPluginResolvedConfig
+  TResolvedConfig extends InternalBuildPluginResolvedConfig =
+    InternalBuildPluginResolvedConfig
 > = PluginContext<TResolvedConfig>;

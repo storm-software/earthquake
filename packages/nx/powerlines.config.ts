@@ -16,13 +16,13 @@
 
  ------------------------------------------------------------------- */
 
-import tsup from "@powerlines/plugin-tsup";
+import tsdown from "@powerlines/plugin-tsdown";
 import untyped from "@powerlines/plugin-untyped";
-import { defineConfig } from "powerlines";
+import { defineConfig } from "powerlines/config";
 
 export default defineConfig({
   name: "nx",
-  entry: [
+  input: [
     "./index.ts",
     "./executors.ts",
     "./generators.ts",
@@ -32,7 +32,7 @@ export default defineConfig({
     "./src/generators/*/generator.ts",
     "./src/generators/*/untyped.ts"
   ],
-  plugins: [untyped(), tsup()],
+  plugins: [untyped(), tsdown()],
   clean: false,
   skipNodeModulesBundle: true
 });

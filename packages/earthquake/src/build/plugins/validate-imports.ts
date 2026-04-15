@@ -16,8 +16,8 @@
 
  ------------------------------------------------------------------- */
 
-import type { Plugin } from "powerlines/types/plugin";
-import type { EarthquakePluginContext } from "../types/powerlines";
+import type { Plugin } from "powerlines";
+import type { EarthquakeBuildContext } from "../../types/build";
 
 /**
  * A Powerlines plugin to validate imports based on the current environment.
@@ -32,7 +32,7 @@ import type { EarthquakePluginContext } from "../types/powerlines";
  * @return A Powerlines plugin.
  */
 export function validateImports<
-  TContext extends EarthquakePluginContext = EarthquakePluginContext
+  TContext extends EarthquakeBuildContext = EarthquakeBuildContext
 >(): Plugin<TContext> {
   return {
     name: "earthquake:validate-imports",
@@ -43,7 +43,6 @@ declare module "earthquake:empty" {
   const empty: {};
   export = empty;
 }
-
 `;
     },
     resolveId: {

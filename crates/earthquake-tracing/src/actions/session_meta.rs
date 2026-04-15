@@ -1,6 +1,6 @@
 use crate::types::PluginItem;
 
-#[derive(ts_rs::TS, serde::Serialize)]
+#[derive(ts_rs::TS, serde::Serialize, Debug)]
 #[ts(export)]
 pub struct SessionMeta {
   #[ts(type = "'SessionMeta'")]

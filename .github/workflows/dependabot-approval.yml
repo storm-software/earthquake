@@ -14,8 +14,8 @@ jobs:
       PR_URL: ${{github.event.pull_request.html_url}}
       GITHUB_TOKEN: "${{secrets.STORM_BOT_GITHUB_TOKEN}}"
     runs-on: ubuntu-latest
-    if:
-      github.event.pull_request.user.login == 'dependabot[bot]' ||
+    environment: production
+    if: github.event.pull_request.user.login == 'dependabot[bot]' ||
       github.event.pull_request.user.login == 'renovate[bot]' ||
       github.event.pull_request.user.login == 'mend-bolt-for-github[bot]'
     permissions:

@@ -24,10 +24,7 @@ try {
 
   // 1) Update Storm Software packages to the latest version
   await echo`${chalk.whiteBright("Checking for Storm Software updates...")}`;
-  let proc =
-    $`pnpm exec storm-pnpm update @storm-software/ @stryke/ @powerlines/ powerlines --install`.timeout(
-      `${8 * 60}s`
-    );
+  let proc = $`pnpm exec storm-pnpm update --all`.timeout(`${8 * 60}s`);
   proc.stdout.on("data", data => echo`${data}`);
   let result = await proc;
   if (result.exitCode !== 0) {
@@ -46,7 +43,7 @@ try {
     );
   }
 
-  echo`${chalk.green("✅ Successfully updated Storm Software package dependencies and re-linked workspace packages")}\n\n`;
+  echo`${chalk.green(" ✔ Successfully updated Storm Software package dependencies and re-linked workspace packages")}\n\n`;
 } catch (error) {
   echo`${chalk.red(
     error?.message ??

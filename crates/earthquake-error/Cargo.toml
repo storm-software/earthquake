@@ -1,17 +1,17 @@
 [package]
-name = "earthquake-error"
-description = "The core Earthquake crate that provides various utilities and functions to process the Earthquake project's files."
-version = "0.1.0"
-publish = false
-edition = { workspace = true }
-repository = { workspace = true }
-authors = { workspace = true }
-license = { workspace = true }
-categories = { workspace = true }
-keywords = { workspace = true }
-homepage = { workspace = true }
+authors       = { workspace = true }
+categories    = { workspace = true }
+description   = "The core Earthquake crate that provides various utilities and functions to process the Earthquake project's files."
 documentation = "https://docs.rs/earthquake"
-readme = "./README.md"
+edition       = { workspace = true }
+homepage      = { workspace = true }
+keywords      = { workspace = true }
+license       = { workspace = true }
+name          = "earthquake-error"
+publish       = false
+readme        = "./README.md"
+repository    = { workspace = true }
+version       = "0.1.0"
 
 [lib]
 doctest = false
@@ -21,29 +21,29 @@ workspace = true
 
 [features]
 default = []
-napi = ["dep:napi", "dep:napi-derive"]
+napi    = ["dep:napi", "dep:napi-derive"]
 
 [dependencies]
-ariadne = { workspace = true }
-anyhow = { workspace = true }
-arcstr = { workspace = true }
-bitflags = { workspace = true }
-camino = { workspace = true }
+anyhow      = { workspace = true }
+arcstr      = { workspace = true }
+ariadne     = { workspace = true }
+bitflags    = { workspace = true }
+camino      = { workspace = true }
 derive_more = { workspace = true }
-ropey = { workspace = true }
-rustc-hash = { workspace = true }
-serde = { workspace = true }
-serde_json = { workspace = true }
-sugar_path = { workspace = true }
-ts-rs = { workspace = true }
+ropey       = { workspace = true }
+rustc-hash  = { workspace = true }
+serde       = { workspace = true }
+serde_json  = { workspace = true }
+sugar_path  = { workspace = true }
+ts-rs       = { workspace = true }
 
 # N-API
-napi = { workspace = true, optional = true }
+napi        = { workspace = true, optional = true }
 napi-derive = { workspace = true, optional = true }
 
 # Oxc
-oxc = { workspace = true }
-oxc_allocator = { workspace = true }
+oxc            = { workspace = true }
+oxc_allocator  = { workspace = true }
 oxc_ecmascript = { workspace = true }
-oxc_index = { workspace = true }
-oxc_traverse = { workspace = true }
+oxc_index      = { workspace = true }
+oxc_traverse   = { workspace = true }

@@ -19,7 +19,7 @@ use tracing_subscriber::{
   registry::LookupSpan,
 };
 
-pub struct DebugFormatter;
+pub(crate) struct DebugFormatter;
 
 impl<S, N> FormatEvent<S, N> for DebugFormatter
 where
@@ -215,7 +215,7 @@ fn current_utc_timestamp_ms() -> u128 {
 }
 
 #[derive(Default)]
-pub struct ActionMetaExtractor {
+pub(crate) struct ActionMetaExtractor {
   pub meta: Option<serde_json::Value>,
 }
 
@@ -231,7 +231,7 @@ impl tracing::field::Visit for ActionMetaExtractor {
   }
 }
 
-pub fn extract_fields_relied_on_context_data(meta: &serde_json::Value) -> FxHashSet<String> {
+pub(crate) fn extract_fields_relied_on_context_data(meta: &serde_json::Value) -> FxHashSet<String> {
   fn visit(meta: &serde_json::Value, context_variables: &mut FxHashSet<String>) {
     if let serde_json::Value::Object(map) = meta {
       for (_key, value) in map {
@@ -254,7 +254,10 @@ pub fn extract_fields_relied_on_context_data(meta: &serde_json::Value) -> FxHash
   contextual_fields
 }
 
-pub fn inject_context_data(meta: &mut serde_json::Value, context_data: &FxHashMap<String, String>) {
+pub(crate) fn inject_context_data(
+  meta: &mut serde_json::Value,
+  context_data: &FxHashMap<String, String>,
+) {
   if let serde_json::Value::Object(map) = meta {
     for value in map.values_mut() {
       if let serde_json::Value::String(value) = value {

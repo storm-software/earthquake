@@ -5,11 +5,7 @@
     "types": ["node"],
     "outDir": "./dist"
   },
-  "references": [
-    {
-      "path": "../earthquake/tsconfig.lib.json"
-    }
-  ],
+  "references": [],
   "include": [
     "executors.ts",
     "generators.ts",
@@ -17,7 +13,8 @@
     "**/*.json",
     "src/**/*.ts",
     "src/**/*.d.ts",
-    "powerlines.config.ts"
+    "powerlines.config.ts",
+    "powerlines.d.ts"
   ],
   "exclude": [
     "jest.config.ts",

@@ -7,7 +7,7 @@ use crate::type_alias::ContextDataMap;
 
 #[derive(Debug, Clone)]
 
-pub struct DebugDataPropagateLayer;
+pub(crate) struct DebugDataPropagateLayer;
 
 impl<S> Layer<S> for DebugDataPropagateLayer
 where
@@ -30,7 +30,7 @@ where
 }
 
 #[derive(Debug)]
-pub struct ContextData(ContextDataMap);
+pub(crate) struct ContextData(ContextDataMap);
 
 impl Deref for ContextData {
   type Target = ContextDataMap;
@@ -41,7 +41,7 @@ impl Deref for ContextData {
 }
 
 #[derive(Default)]
-pub struct ContextDataFinder {
+pub(crate) struct ContextDataFinder {
   context_data: ContextDataMap,
 }
 

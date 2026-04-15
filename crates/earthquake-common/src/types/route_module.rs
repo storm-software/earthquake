@@ -9,9 +9,13 @@ use crate::RouteModuleKind;
 /// Route module used in Earthquake routing.
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
 pub struct RouteModule {
+  /// The kind of the route module, e.g. page, layout, error, etc.
   pub kind: RouteModuleKind,
+  /// A hash of the module content, used for caching and change detection.
   pub hash: Vec<u8>,
+  /// The raw content of the route module file.
   pub content: String,
+  /// An optional prelude that can be injected before the module content during processing.
   pub prelude: Option<String>,
 }
 

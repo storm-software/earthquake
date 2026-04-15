@@ -16,16 +16,33 @@
 
  ------------------------------------------------------------------- */
 
+import type { ReactPluginContext } from "@powerlines/plugin-react";
+import type { VitePluginContext } from "@powerlines/plugin-vite";
 import type { MaybePromise } from "@stryke/types/base";
-import type { TransformResult } from "powerlines/types/context";
 import type {
-  ExternalPluginHookFunctions,
+  Context,
+  HookFunctions,
   Plugin,
-  PluginHook
-} from "powerlines/types/plugin";
-import type { EarthquakePluginContext } from "./powerlines";
+  PluginHook,
+  PluginHooks,
+  TransformResult,
+  UnpluginBuilderVariant,
+  UnpluginHookFunctions,
+  UnpluginOptions
+} from "powerlines";
+import type {
+  BindingPluginLayoutParams,
+  BindingPluginPageParams
+} from "../build/binding.cjs";
+import type { ResolvedConfig } from "./config";
 
-export const EARTHQUAKE_PLUGIN_HOOKS = [
+export type EarthquakeBuildContext<
+  TResolvedConfig extends ResolvedConfig = ResolvedConfig
+> = Context<TResolvedConfig> &
+  VitePluginContext<TResolvedConfig> &
+  ReactPluginContext<TResolvedConfig>;
+
+export const EARTHQUAKE_BUILD_HOOKS = [
   "route",
   "layout",
   "page",
@@ -41,8 +58,8 @@ export const EARTHQUAKE_PLUGIN_HOOKS = [
   "globalNotFound"
 ] as const;
 
-export interface EarthquakeBasePluginHookFunctions<
-  TContext extends EarthquakePluginContext = EarthquakePluginContext
+export interface EarthquakeBuildHookFunctions<
+  TContext extends EarthquakeBuildContext = EarthquakeBuildContext
 > {
   /**
    * A hook that is called to overwrite the generated declaration types file (.d.ts). The generated type definitions should describe the built-in modules/logic added during the `prepare` task.
@@ -53,8 +70,7 @@ export interface EarthquakeBasePluginHookFunctions<
    */
   layout: (
     this: TContext,
-    code: string,
-    id: string
+    ctx: BindingPluginLayoutParams
   ) => MaybePromise<TransformResult>;
 
   /**
@@ -66,19 +82,21 @@ export interface EarthquakeBasePluginHookFunctions<
    */
   page: (
     this: TContext,
-    code: string,
-    id: string
+    ctx: BindingPluginPageParams
   ) => MaybePromise<TransformResult>;
 }
 
 export type EarthquakePluginHookFunctions<
-  TContext extends EarthquakePluginContext = EarthquakePluginContext
-> = EarthquakeBasePluginHookFunctions<TContext> &
-  ExternalPluginHookFunctions<TContext>;
+  TContext extends EarthquakeBuildContext = EarthquakeBuildContext
+> = HookFunctions<TContext> & EarthquakeBuildHookFunctions<TContext>;
 
-export interface EarthquakePluginHooks<
-  TContext extends EarthquakePluginContext = EarthquakePluginContext
-> {
+export type EarthquakePluginHooks<
+  TContext extends EarthquakeBuildContext = EarthquakeBuildContext
+> = {
+  [TPluginHook in keyof EarthquakePluginHookFunctions<TContext>]?: PluginHook<
+    EarthquakePluginHookFunctions<TContext>[TPluginHook]
+  >;
+} & {
   /**
    * A hook that is called to overwrite the generated declaration types file (.d.ts). The generated type definitions should describe the built-in modules/logic added during the `prepare` task.
    *
@@ -87,8 +105,11 @@ export interface EarthquakePluginHooks<
    * @returns A promise that resolves when the hook is complete.
    */
   layout: PluginHook<
-    (this: TContext, code: string, id: string) => MaybePromise<TransformResult>,
-    "code" | "id"
+    (
+      this: TContext,
+      ctx: BindingPluginLayoutParams
+    ) => MaybePromise<TransformResult>,
+    "id" | "code"
   >;
 
   /**
@@ -99,15 +120,46 @@ export interface EarthquakePluginHooks<
    * @returns A promise that resolves when the hook is complete.
    */
   page: PluginHook<
-    (this: TContext, code: string, id: string) => MaybePromise<TransformResult>,
-    "code" | "id"
+    (
+      this: TContext,
+      ctx: BindingPluginPageParams
+    ) => MaybePromise<TransformResult>,
+    "id" | "code"
   >;
-}
+} & PluginHooks<TContext>;
 
 export type EarthquakePluginHookKeys<
-  TContext extends EarthquakePluginContext = EarthquakePluginContext
+  TContext extends EarthquakeBuildContext = EarthquakeBuildContext
 > = keyof EarthquakePluginHooks<TContext>;
 
 export type EarthquakePlugin<
-  TContext extends EarthquakePluginContext = EarthquakePluginContext
+  TContext extends EarthquakeBuildContext = EarthquakeBuildContext
 > = Plugin<TContext> & EarthquakePluginHooks<TContext>;
+
+export type InferHookFunction<
+  TContext extends EarthquakeBuildContext,
+  TKey extends string
+> = TKey extends `${infer TUnpluginBuilderVariant}:${infer TUnpluginField}`
+  ? TUnpluginBuilderVariant extends UnpluginBuilderVariant
+    ? TUnpluginField extends keyof Required<UnpluginOptions>[TUnpluginBuilderVariant]
+      ? UnpluginHookFunctions<TContext, TUnpluginBuilderVariant, TUnpluginField>
+      : never
+    : never
+  : TKey extends keyof EarthquakeBuildHookFunctions<TContext>
+    ? EarthquakeBuildHookFunctions<TContext>[TKey]
+    : never;
+
+export type InferHookReturnType<
+  TContext extends EarthquakeBuildContext,
+  TKey extends string
+> = ReturnType<InferHookFunction<TContext, TKey>>;
+
+export type InferHookParameters<
+  TContext extends EarthquakeBuildContext,
+  TKey extends string
+> = Parameters<InferHookFunction<TContext, TKey>>;
+
+export type InferHookThisType<
+  TContext extends EarthquakeBuildContext,
+  TKey extends string
+> = ThisParameterType<InferHookFunction<TContext, TKey>>;
