@@ -24,8 +24,8 @@ export default defineConfig({
   name: "nx",
   input: [
     "./index.ts",
-    "./executors.ts",
-    "./generators.ts",
+    // "./executors.ts",
+    // "./generators.ts",
     "./src/plugin/index.ts",
     "./src/executors/*/executor.ts",
     "./src/executors/*/untyped.ts",

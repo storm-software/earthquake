@@ -1,43 +1,41 @@
-type MaybePromise<T> = T | Promise<T>;
-type Nullable<T> = T | null | undefined;
-type VoidNullable<T = void> = T | null | undefined | void;
-export type BindingStringOrRegex = string | RegExp;
-type BindingResult<T> =
-  | { errors: BindingError[]; isBindingErrors: boolean }
-  | T;
+type MaybePromise<T> = T | Promise<T>
+type Nullable<T> = T | null | undefined
+type VoidNullable<T = void> = T | null | undefined | void
+export type BindingStringOrRegex = string | RegExp
+type BindingResult<T> = { errors: BindingError[], isBindingErrors: boolean } | T
 
 export declare class BindingStaticAnalysisEngine {
-  constructor(options: BindingOptions);
-  prepare(): Promise<BindingResult<BindingPrepareRoutesOutput>>;
-  close(): Promise<undefined>;
-  get isClosed(): boolean;
+  constructor(options: BindingOptions)
+  prepare(): Promise<BindingResult<BindingPrepareRoutesOutput>>
+  close(): Promise<undefined>
+  get isClosed(): boolean
 }
 
 export declare class TraceSubscriberGuard {
-  close(): void;
+  close(): void
 }
 
 export type BindingError =
-  | { type: "JsError"; field0: Error }
-  | { type: "NativeError"; field0: NativeError };
+  | { type: 'JsError', field0: Error }
+  | { type: 'NativeError', field0: NativeError }
 
 export interface BindingErrors {
-  errors: Array<BindingError>;
-  isBindingErrors: boolean;
+  errors: Array<BindingError>
+  isBindingErrors: boolean
 }
 
 /** Represents a log entry in the Earthquake binding. */
 export interface BindingLog {
   /** The log message. */
-  message: string;
+  message: string
   /** The log code. */
-  code?: string;
+  code?: string
   /** Additional details about the log. */
-  details?: string;
+  details?: string
   /** The log level. */
-  level: BindingLogLevel;
+  level: BindingLogLevel
   /** The plugin that generated the log. */
-  plugin?: string;
+  plugin?: string
 }
 
 export declare enum BindingLogLevel {
@@ -51,163 +49,156 @@ export declare enum BindingLogLevel {
 
 export interface BindingOptions {
   /** The name of the application. */
-  name: string;
+  name: string
   /** The title of the application. */
-  title: string;
+  title: string
   /** The description of the application. */
-  description?: string;
+  description?: string
   /** The base URL for the application. */
-  baseUrl: string;
+  baseUrl: string
   /** Patterns to treat as external. */
-  external?: Array<string | RegExp>;
+  external?: Array<string | RegExp>
   /** Patterns to exclude from being treated as external. */
-  noExternal?: Array<string | RegExp>;
+  noExternal?: Array<string | RegExp>
   /** Whether to skip bundling node_modules. */
-  skipNodeModulesBundle?: boolean;
+  skipNodeModulesBundle?: boolean
   /** The log level. */
-  logLevel?: "trace" | "debug" | "info" | "warn" | "error" | "silent";
+  logLevel?: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'silent'
   /** Disable tracing. */
-  disableTracing?: (
-    logLevel: "trace" | "debug" | "info" | "warn" | "error",
-    log: BindingLog
-  ) => Promise<void>;
+  disableTracing?: (logLevel: 'trace' | 'debug' | 'info' | 'warn' | 'error', log: BindingLog) => Promise<void>
   /** Callback for log messages. */
-  customLogger?: BindingLogger;
+  customLogger?: BindingLogger
   /** An object containing an interface to invoke Earthquake plugins from. */
-  pluginApi: BindingPluginApiOptions;
+  pluginApi: BindingPluginApiOptions
   /** The root directory of the project. */
-  root: string;
+  root: string
   /** The root directory of the workspace. */
-  workspaceRoot: string;
+  workspaceRoot: string
   /** Routes directory. */
-  inputPath: string;
+  inputPath: string
   /** Path to public directory. */
-  publicPath: string;
+  publicPath: string
   /** Path to store build artifacts. */
-  artifactsPath: string;
+  artifactsPath: string
   /** Path to built-in virtual modules. */
-  builtinPath: string;
+  builtinPath: string
   /** Virtual entry files path. */
-  entryPath: string;
+  entryPath: string
   /** Path to cache directory. */
-  cachePath: string;
+  cachePath: string
   /** Path to data directory. */
-  dataPath: string;
+  dataPath: string
   /** Path to log directory. */
-  logPath: string;
+  logPath: string
   /** Path to temporary directory. */
-  tempPath: string;
+  tempPath: string
   /** Path to configuration directory. */
-  configPath: string;
+  configPath: string
   /** Path to output directory. */
-  outputPath: string;
+  outputPath: string
   /** Path to tsconfig.json file. */
-  tsconfig?: string;
+  tsconfig?: string
 }
 
 /** Route modules used in Earthquake routing. */
 export interface BindingOutputRoute {
   /** The path of the route. */
-  path: string;
+  path: string
   /** The current content of the page module. */
-  page?: string;
+  page?: string
   /** The current content of the layout module. */
-  layout?: string;
+  layout?: string
   /** The current content of the error module. */
-  error?: string;
+  error?: string
   /** The current content of the global error module. */
-  globalError?: string;
+  globalError?: string
   /** The current content of the global not found module. */
-  globalNotFound?: string;
+  globalNotFound?: string
   /** The current content of the loading module. */
-  loading?: string;
+  loading?: string
   /** The current content of the template module. */
-  template?: string;
+  template?: string
   /** The current content of the forbidden module. */
-  forbidden?: string;
+  forbidden?: string
   /** The current content of the unauthorized module. */
-  unauthorized?: string;
+  unauthorized?: string
   /** The current content of the not found module. */
-  notFound?: string;
+  notFound?: string
   /** The current content of the default module. */
-  default?: string;
+  default?: string
   /** The current content of the API route module. */
-  api?: string;
+  api?: string
   /** Metadata associated with the route. */
-  metadata?: BindingOutputRouteMetadata;
+  metadata?: BindingOutputRouteMetadata
 }
 
 export interface BindingOutputRouteMetadata {
   /** Icon metadata. */
-  icon: Array<BindingOutputRouteMetadataItem>;
+  icon: Array<BindingOutputRouteMetadataItem>
   /** Apple metadata. */
-  apple: Array<BindingOutputRouteMetadataItem>;
+  apple: Array<BindingOutputRouteMetadataItem>
   /** Twitter metadata. */
-  twitter: Array<BindingOutputRouteMetadataItem>;
+  twitter: Array<BindingOutputRouteMetadataItem>
   /** Open Graph metadata. */
-  openGraph: Array<BindingOutputRouteMetadataItem>;
+  openGraph: Array<BindingOutputRouteMetadataItem>
   /** Sitemap metadata. */
-  sitemap?: BindingOutputRouteMetadataItem;
+  sitemap?: BindingOutputRouteMetadataItem
 }
 
 export interface BindingOutputRouteMetadataItem {
-  path: string;
-  altPath?: string;
+  path: string
+  altPath?: string
 }
 
 /** Options for the plugin API exposed to JavaScript. */
 export interface BindingPluginApiOptions {
   /** Callback for layout resolution. */
-  layoutPre?: (params: BindingPluginLayoutParams) => MaybePromise<VoidNullable>;
+  layoutPre?: (params: BindingPluginLayoutParams) => MaybePromise<VoidNullable>
   /** Callback for layout resolution. */
-  layout?: (params: BindingPluginLayoutParams) => MaybePromise<VoidNullable>;
+  layout?: (params: BindingPluginLayoutParams) => MaybePromise<VoidNullable>
   /** Callback for layout resolution. */
-  layoutPost?: (
-    params: BindingPluginLayoutParams
-  ) => MaybePromise<VoidNullable>;
+  layoutPost?: (params: BindingPluginLayoutParams) => MaybePromise<VoidNullable>
   /** Callback for page resolution. */
-  pagePre?: (params: BindingPluginPageParams) => MaybePromise<VoidNullable>;
+  pagePre?: (params: BindingPluginPageParams) => MaybePromise<VoidNullable>
   /** Callback for page resolution. */
-  page?: (params: BindingPluginPageParams) => MaybePromise<VoidNullable>;
+  page?: (params: BindingPluginPageParams) => MaybePromise<VoidNullable>
   /** Callback for page resolution. */
-  pagePost?: (params: BindingPluginPageParams) => MaybePromise<VoidNullable>;
+  pagePost?: (params: BindingPluginPageParams) => MaybePromise<VoidNullable>
 }
 
 /** Data passed to plugin hooks related to layout resolution. */
 export interface BindingPluginLayoutParams {
   /** The path of the layout being resolved. */
-  path: string;
+  path: string
   /** The code of the layout being resolved. */
-  code: string;
+  code: string
 }
 
 /** Data passed to plugin hooks related to page resolution. */
 export interface BindingPluginPageParams {
   /** The path of the page being resolved. */
-  path: string;
+  path: string
   /** The code of the page being resolved. */
-  code: string;
+  code: string
 }
 
 export interface BindingPluginWithIndex {
-  index: number;
-  plugin: BindingOptions;
+  index: number
+  plugin: BindingOptions
 }
 
 export interface BindingPrepareRoutesOutput {
-  routes: Array<BindingOutputRoute>;
+  routes: Array<BindingOutputRoute>
 }
 
-export declare function createTokioRuntime(
-  blockingThreads?: number | undefined | null
-): void;
+export declare function createTokioRuntime(blockingThreads?: number | undefined | null): void
 
-export declare function initTraceSubscriber(): TraceSubscriberGuard | null;
+export declare function initTraceSubscriber(): TraceSubscriberGuard | null
 
 /** Error emitted from native side, it only contains kind and message, no stack trace. */
 export interface NativeError {
-  kind: string;
-  message: string;
+  kind: string
+  message: string
 }
 
 /**
@@ -216,7 +207,7 @@ export interface NativeError {
  * This is required for the wasm target with `tokio_unstable` cfg.
  * In the wasm runtime, the `park` threads will hang there until the tokio::Runtime is shutdown.
  */
-export declare function shutdownAsyncRuntime(): void;
+export declare function shutdownAsyncRuntime(): void
 
 /**
  * Start the async runtime manually.
@@ -224,40 +215,42 @@ export declare function shutdownAsyncRuntime(): void;
  * This is required when the async runtime is shutdown manually.
  * Usually it's used in test.
  */
-export declare function startAsyncRuntime(): void;
+export declare function startAsyncRuntime(): void
 export interface Comment {
-  type: "Line" | "Block";
-  value: string;
-  start: number;
-  end: number;
+  type: 'Line' | 'Block'
+  value: string
+  start: number
+  end: number
 }
 
 export interface ErrorLabel {
-  message?: string;
-  start: number;
-  end: number;
+  message?: string
+  start: number
+  end: number
 }
 
 export interface OxcError {
-  severity: Severity;
-  message: string;
-  labels: Array<ErrorLabel>;
-  helpMessage?: string;
-  codeframe?: string;
+  severity: Severity
+  message: string
+  labels: Array<ErrorLabel>
+  helpMessage?: string
+  codeframe?: string
 }
 
-export type Severity = "Error" | "Warning" | "Advice";
+export type Severity =  'Error'|
+'Warning'|
+'Advice';
 export declare class ParseResult {
-  get program(): import("@oxc-project/types").Program;
-  get module(): EcmaScriptModule;
-  get comments(): Array<Comment>;
-  get errors(): Array<OxcError>;
+  get program(): import("@oxc-project/types").Program
+  get module(): EcmaScriptModule
+  get comments(): Array<Comment>
+  get errors(): Array<OxcError>
 }
 
 export interface DynamicImport {
-  start: number;
-  end: number;
-  moduleRequest: Span;
+  start: number
+  end: number
+  moduleRequest: Span
 }
 
 export interface EcmaScriptModule {
@@ -268,98 +261,90 @@ export interface EcmaScriptModule {
    *
    * Dynamic imports `import('foo')` are ignored since they can be used in non-ESM files.
    */
-  hasModuleSyntax: boolean;
+  hasModuleSyntax: boolean
   /** Import statements. */
-  staticImports: Array<StaticImport>;
+  staticImports: Array<StaticImport>
   /** Export statements. */
-  staticExports: Array<StaticExport>;
+  staticExports: Array<StaticExport>
   /** Dynamic import expressions. */
-  dynamicImports: Array<DynamicImport>;
+  dynamicImports: Array<DynamicImport>
   /** Span positions` of `import.meta` */
-  importMetas: Array<Span>;
+  importMetas: Array<Span>
 }
 
 export interface ExportExportName {
-  kind: ExportExportNameKind;
-  name?: string;
-  start?: number;
-  end?: number;
+  kind: ExportExportNameKind
+  name?: string
+  start?: number
+  end?: number
 }
 
-export type ExportExportNameKind =
-  /** `export { name } */
-  | "Name"
-  /** `export default expression` */
-  | "Default"
-  /** `export * from "mod" */
-  | "None";
+export type ExportExportNameKind = /** `export { name } */
+'Name'|
+/** `export default expression` */
+'Default'|
+/** `export * from "mod" */
+'None';
 
 export interface ExportImportName {
-  kind: ExportImportNameKind;
-  name?: string;
-  start?: number;
-  end?: number;
+  kind: ExportImportNameKind
+  name?: string
+  start?: number
+  end?: number
 }
 
-export type ExportImportNameKind =
-  /** `export { name } */
-  | "Name"
-  /** `export * as ns from "mod"` */
-  | "All"
-  /** `export * from "mod"` */
-  | "AllButDefault"
-  /** Does not have a specifier. */
-  | "None";
+export type ExportImportNameKind = /** `export { name } */
+'Name'|
+/** `export * as ns from "mod"` */
+'All'|
+/** `export * from "mod"` */
+'AllButDefault'|
+/** Does not have a specifier. */
+'None';
 
 export interface ExportLocalName {
-  kind: ExportLocalNameKind;
-  name?: string;
-  start?: number;
-  end?: number;
+  kind: ExportLocalNameKind
+  name?: string
+  start?: number
+  end?: number
 }
 
-export type ExportLocalNameKind =
-  /** `export { name } */
-  | "Name"
-  /** `export default expression` */
-  | "Default"
-  /**
-   * If the exported value is not locally accessible from within the module.
-   * `export default function () {}`
-   */
-  | "None";
+export type ExportLocalNameKind = /** `export { name } */
+'Name'|
+/** `export default expression` */
+'Default'|
+/**
+ * If the exported value is not locally accessible from within the module.
+ * `export default function () {}`
+ */
+'None';
 
 export interface ImportName {
-  kind: ImportNameKind;
-  name?: string;
-  start?: number;
-  end?: number;
+  kind: ImportNameKind
+  name?: string
+  start?: number
+  end?: number
 }
 
-export type ImportNameKind =
-  /** `import { x } from "mod"` */
-  | "Name"
-  /** `import * as ns from "mod"` */
-  | "NamespaceObject"
-  /** `import defaultExport from "mod"` */
-  | "Default";
+export type ImportNameKind = /** `import { x } from "mod"` */
+'Name'|
+/** `import * as ns from "mod"` */
+'NamespaceObject'|
+/** `import defaultExport from "mod"` */
+'Default';
 
 /**
  * Parse asynchronously.
  *
  * Note: This function can be slower than `parseSync` due to the overhead of spawning a thread.
  */
-export declare function parseAsync(
-  filename: string,
-  sourceText: string,
-  options?: ParserOptions | undefined | null
-): Promise<ParseResult>;
+export declare function parseAsync(filename: string, sourceText: string, options?: ParserOptions | undefined | null): Promise<ParseResult>
 
 export interface ParserOptions {
   /** Treat the source text as `js`, `jsx`, `ts`, `tsx` or `dts`. */
-  lang?: "js" | "jsx" | "ts" | "tsx" | "dts";
+  lang?: 'js' | 'jsx' | 'ts' | 'tsx' | 'dts'
   /** Treat the source text as `script` or `module` code. */
-  sourceType?: "script" | "module" | "unambiguous" | undefined;
+  sourceType?: 'script' | 'module' | 'unambiguous' | undefined
   /**
    * Return an AST which includes TypeScript-related properties, or excludes them.
    *
@@ -367,7 +352,7 @@ export interface ParserOptions {
    * `'ts'` is default for TS / TSX files.
    * The type of the file is determined from `lang` option, or extension of provided `filename`.
    */
-  astType?: "js" | "ts";
+  astType?: 'js' | 'ts'
   /**
    * Controls whether the `range` property is included on AST nodes.
    * The `range` property is a `[number, number]` which indicates the start/end offsets
@@ -375,7 +360,7 @@ export interface ParserOptions {
    *
    * @default false
    */
-  range?: boolean;
+  range?: boolean
   /**
    * Emit `ParenthesizedExpression` and `TSParenthesizedType` in AST.
    *
@@ -385,7 +370,7 @@ export interface ParserOptions {
    *
    * @default true
    */
-  preserveParens?: boolean;
+  preserveParens?: boolean
   /**
    * Produce semantic errors with an additional AST pass.
    * Semantic errors depend on symbols and scopes, where the parser does not construct.
@@ -393,40 +378,36 @@ export interface ParserOptions {
    *
    * @default false
    */
-  showSemanticErrors?: boolean;
+  showSemanticErrors?: boolean
 }
 
 /** Parse synchronously. */
-export declare function parseSync(
-  filename: string,
-  sourceText: string,
-  options?: ParserOptions | undefined | null
-): ParseResult;
+export declare function parseSync(filename: string, sourceText: string, options?: ParserOptions | undefined | null): ParseResult
 
 /** Returns `true` if raw transfer is supported on this platform. */
-export declare function rawTransferSupported(): boolean;
+export declare function rawTransferSupported(): boolean
 
 export interface Span {
-  start: number;
-  end: number;
+  start: number
+  end: number
 }
 
 export interface StaticExport {
-  start: number;
-  end: number;
-  entries: Array<StaticExportEntry>;
+  start: number
+  end: number
+  entries: Array<StaticExportEntry>
 }
 
 export interface StaticExportEntry {
-  start: number;
-  end: number;
-  moduleRequest?: ValueSpan;
+  start: number
+  end: number
+  moduleRequest?: ValueSpan
   /** The name under which the desired binding is exported by the module`. */
-  importName: ExportImportName;
+  importName: ExportImportName
   /** The name used to export this binding by this module. */
-  exportName: ExportExportName;
+  exportName: ExportExportName
   /** The name that is used to locally access the exported value from within the importing module. */
-  localName: ExportLocalName;
+  localName: ExportLocalName
   /**
    * Whether the export is a TypeScript `export type`.
    *
@@ -440,14 +421,14 @@ export interface StaticExportEntry {
    * export type { foo } from 'mod';
    * ```
    */
-  isType: boolean;
+  isType: boolean
 }
 
 export interface StaticImport {
   /** Start of import statement. */
-  start: number;
+  start: number
   /** End of import statement. */
-  end: number;
+  end: number
   /**
    * Import source.
    *
@@ -456,13 +437,13 @@ export interface StaticImport {
    * //                   ^^^
    * ```
    */
-  moduleRequest: ValueSpan;
+  moduleRequest: ValueSpan
   /**
    * Import specifiers.
    *
    * Empty for `import "mod"`.
    */
-  entries: Array<StaticImportEntry>;
+  entries: Array<StaticImportEntry>
 }
 
 export interface StaticImportEntry {
@@ -476,7 +457,7 @@ export interface StaticImportEntry {
    * //       ^^^
    * ```
    */
-  importName: ImportName;
+  importName: ImportName
   /**
    * The name that is used to locally access the imported value from within the importing module.
    * ```js
@@ -486,7 +467,7 @@ export interface StaticImportEntry {
    * //              ^^^
    * ```
    */
-  localName: ValueSpan;
+  localName: ValueSpan
   /**
    * Whether this binding is for a TypeScript type-only import.
    *
@@ -496,25 +477,25 @@ export interface StaticImportEntry {
    * import { type foo } from "mod";
    * ```
    */
-  isType: boolean;
+  isType: boolean
 }
 
 export interface ValueSpan {
-  value: string;
-  start: number;
-  end: number;
+  value: string
+  start: number
+  end: number
 }
 export declare class ResolverFactory {
-  constructor(options?: NapiResolveOptions | undefined | null);
-  static default(): ResolverFactory;
+  constructor(options?: NapiResolveOptions | undefined | null)
+  static default(): ResolverFactory
   /** Clone the resolver using the same underlying cache. */
-  cloneWithOptions(options: NapiResolveOptions): ResolverFactory;
+  cloneWithOptions(options: NapiResolveOptions): ResolverFactory
   /** Clear the underlying cache. */
-  clearCache(): void;
+  clearCache(): void
   /** Synchronously resolve `specifier` at an absolute path to a `directory`. */
-  sync(directory: string, request: string): ResolveResult;
+  sync(directory: string, request: string): ResolveResult
   /** Asynchronously resolve `specifier` at an absolute path to a `directory`. */
-  async(directory: string, request: string): Promise<ResolveResult>;
+  async(directory: string, request: string): Promise<ResolveResult>
 }
 
 /** Node.js builtin module when `Options::builtin_modules` is enabled. */
@@ -524,13 +505,13 @@ export interface Builtin {
    *
    * Always prefixed with "node:" in compliance with the ESM specification.
    */
-  resolved: string;
+  resolved: string
   /**
    * Whether the request was prefixed with `node:` or not.
    * `fs` -> `false`.
    * `node:fs` returns `true`.
    */
-  isRuntimeModule: boolean;
+  isRuntimeModule: boolean
 }
 
 export declare enum EnforceExtension {
@@ -539,7 +520,11 @@ export declare enum EnforceExtension {
   Disabled = 2
 }
 
-export type ModuleType = "module" | "commonjs" | "json" | "wasm" | "addon";
+export type ModuleType =  'module'|
+'commonjs'|
+'json'|
+'wasm'|
+'addon';
 
 /**
  * Module Resolution Options
@@ -554,7 +539,7 @@ export interface NapiResolveOptions {
    *
    * Default `None`
    */
-  tsconfig?: "auto" | TsconfigOptions;
+  tsconfig?: 'auto' | TsconfigOptions
   /**
    * Alias for [ResolveOptions::alias] and [ResolveOptions::fallback].
    *
@@ -564,7 +549,7 @@ export interface NapiResolveOptions {
    * A trailing $ can also be added to the given object's keys to signify an exact match.
    * Default `{}`
    */
-  alias?: Record<string, Array<string | undefined | null>>;
+  alias?: Record<string, Array<string | undefined | null>>
   /**
    * A list of alias fields in description files.
    * Specify a field, such as `browser`, to be parsed according to [this specification](https://github.com/defunctzombie/package-browser-field-spec).
@@ -572,14 +557,14 @@ export interface NapiResolveOptions {
    *
    * Default `[]`
    */
-  aliasFields?: (string | string[])[];
+  aliasFields?: (string | string[])[]
   /**
    * Condition names for exports field which defines entry points of a package.
    * The key order in the exports field is significant. During condition matching, earlier entries have higher priority and take precedence over later entries.
    *
    * Default `[]`
    */
-  conditionNames?: Array<string>;
+  conditionNames?: Array<string>
   /**
    * If true, it will not allow extension-less files.
    * So by default `require('./foo')` works if `./foo` has a `.js` extension,
@@ -591,14 +576,14 @@ export interface NapiResolveOptions {
    *
    * Default None, which is the same as `Some(false)` when the above empty rule is not applied.
    */
-  enforceExtension?: EnforceExtension;
+  enforceExtension?: EnforceExtension
   /**
    * A list of exports fields in description files.
    * Can be a path to json object such as `["path", "to", "exports"]`.
    *
    * Default `[["exports"]]`.
    */
-  exportsFields?: (string | string[])[];
+  exportsFields?: (string | string[])[]
   /**
    * Fields from `package.json` which are used to provide the internal requests of a package
    * (requests starting with # are considered internal).
@@ -607,13 +592,13 @@ export interface NapiResolveOptions {
    *
    * Default `[["imports"]]`.
    */
-  importsFields?: (string | string[])[];
+  importsFields?: (string | string[])[]
   /**
    * An object which maps extension to extension aliases.
    *
    * Default `{}`
    */
-  extensionAlias?: Record<string, Array<string>>;
+  extensionAlias?: Record<string, Array<string>>
   /**
    * Attempt to resolve these extensions in order.
    * If multiple files share the same name but have different extensions,
@@ -621,13 +606,13 @@ export interface NapiResolveOptions {
    *
    * Default `[".js", ".json", ".node"]`
    */
-  extensions?: Array<string>;
+  extensions?: Array<string>
   /**
    * Redirect module requests when normal resolving fails.
    *
    * Default `{}`
    */
-  fallback?: Record<string, Array<string | undefined | null>>;
+  fallback?: Record<string, Array<string | undefined | null>>
   /**
    * Request passed to resolve is already fully specified and extensions or main files are not resolved for it (they are still resolved for internal requests).
    *
@@ -635,56 +620,56 @@ export interface NapiResolveOptions {
    *
    * Default `false`
    */
-  fullySpecified?: boolean;
+  fullySpecified?: boolean
   /**
    * A list of main fields in description files
    *
    * Default `["main"]`.
    */
-  mainFields?: string | string[];
+  mainFields?: string | string[]
   /**
    * The filename to be used while resolving directories.
    *
    * Default `["index"]`
    */
-  mainFiles?: Array<string>;
+  mainFiles?: Array<string>
   /**
    * A list of directories to resolve modules from, can be absolute path or folder name.
    *
    * Default `["node_modules"]`
    */
-  modules?: string | string[];
+  modules?: string | string[]
   /**
    * Resolve to a context instead of a file.
    *
    * Default `false`
    */
-  resolveToContext?: boolean;
+  resolveToContext?: boolean
   /**
    * Prefer to resolve module requests as relative requests instead of using modules from node_modules directories.
    *
    * Default `false`
    */
-  preferRelative?: boolean;
+  preferRelative?: boolean
   /**
    * Prefer to resolve server-relative urls as absolute paths before falling back to resolve in ResolveOptions::roots.
    *
    * Default `false`
    */
-  preferAbsolute?: boolean;
+  preferAbsolute?: boolean
   /**
    * A list of resolve restrictions to restrict the paths that a request can be resolved on.
    *
    * Default `[]`
    */
-  restrictions?: Array<Restriction>;
+  restrictions?: Array<Restriction>
   /**
    * A list of directories where requests of server-relative URLs (starting with '/') are resolved.
    * On non-Windows systems these requests are resolved as an absolute path first.
    *
    * Default `[]`
    */
-  roots?: Array<string>;
+  roots?: Array<string>
   /**
    * Whether to resolve symlinks to their symlinked location.
    * When enabled, symlinked resources are resolved to their real path, not their symlinked location.
@@ -692,20 +677,20 @@ export interface NapiResolveOptions {
    *
    * Default `true`
    */
-  symlinks?: boolean;
+  symlinks?: boolean
   /**
    * Whether to parse [module.builtinModules](https://nodejs.org/api/module.html#modulebuiltinmodules) or not.
    * For example, "zlib" will throw [crate::ResolveError::Builtin] when set to true.
    *
    * Default `false`
    */
-  builtinModules?: boolean;
+  builtinModules?: boolean
   /**
    * Resolve [ResolveResult::moduleType].
    *
    * Default `false`
    */
-  moduleType?: boolean;
+  moduleType?: boolean
   /**
    * Allow `exports` field in `require('../directory')`.
    *
@@ -716,13 +701,13 @@ export interface NapiResolveOptions {
    *
    * Default: `false`
    */
-  allowPackageExportsInDirectoryResolve?: boolean;
+  allowPackageExportsInDirectoryResolve?: boolean
 }
 
 export interface ResolveResult {
-  path?: string;
-  error?: string;
-  builtin?: Builtin;
+  path?: string
+  error?: string
+  builtin?: Builtin
   /**
    * Module type for this path.
    *
@@ -732,9 +717,9 @@ export interface ResolveResult {
    *
    *  The algorithm uses the file extension or finds the closest `package.json` with the `type` field.
    */
-  moduleType?: ModuleType;
+  moduleType?: ModuleType
   /** `package.json` path for the given module. */
-  packageJsonPath?: string;
+  packageJsonPath?: string
 }
 
 /**
@@ -742,11 +727,11 @@ export interface ResolveResult {
  * Use struct because napi don't support structured union now
  */
 export interface Restriction {
-  path?: string;
-  regex?: string;
+  path?: string
+  regex?: string
 }
 
-export declare function sync(path: string, request: string): ResolveResult;
+export declare function sync(path: string, request: string): ResolveResult
 
 /**
  * Tsconfig Options
@@ -760,24 +745,24 @@ export interface TsconfigOptions {
    * * a relative path to the configuration file. It will be resolved relative to cwd.
    * * an absolute path to the configuration file.
    */
-  configFile: string;
+  configFile: string
   /**
    * Support for Typescript Project References.
    *
    * * `'auto'`: use the `references` field from tsconfig of `config_file`.
    * * `string[]`: manually provided relative or absolute path.
    */
-  references?: "auto" | string[];
+  references?: 'auto' | string[]
 }
 export interface SourceMap {
-  file?: string;
-  mappings: string;
-  names: Array<string>;
-  sourceRoot?: string;
-  sources: Array<string>;
-  sourcesContent?: Array<string>;
-  version: number;
-  x_google_ignoreList?: Array<number>;
+  file?: string
+  mappings: string
+  names: Array<string>
+  sourceRoot?: string
+  sources: Array<string>
+  sourcesContent?: Array<string>
+  version: number
+  x_google_ignoreList?: Array<number>
 }
 export interface ArrowFunctionsOptions {
   /**
@@ -788,14 +773,14 @@ export interface ArrowFunctionsOptions {
    *
    * @default false
    */
-  spec?: boolean;
+  spec?: boolean
 }
 
 export interface CompilerAssumptions {
-  ignoreFunctionLength?: boolean;
-  noDocumentAll?: boolean;
-  objectRestNoSymbols?: boolean;
-  pureGetters?: boolean;
+  ignoreFunctionLength?: boolean
+  noDocumentAll?: boolean
+  objectRestNoSymbols?: boolean
+  pureGetters?: boolean
   /**
    * When using public class fields, assume that they don't shadow any getter in the current class,
    * in its subclasses or in its superclass. Thus, it's safe to assign them rather than using
@@ -837,7 +822,7 @@ export interface CompilerAssumptions {
    * set both `set_public_class_fields` and [`crate::TypeScriptOptions::remove_class_fields_without_initializer`]
    * to `true`.
    */
-  setPublicClassFields?: boolean;
+  setPublicClassFields?: boolean
 }
 
 export interface DecoratorOptions {
@@ -850,7 +835,7 @@ export interface DecoratorOptions {
    * @see https://www.typescriptlang.org/tsconfig/#experimentalDecorators
    * @default false
    */
-  legacy?: boolean;
+  legacy?: boolean
   /**
    * Enables emitting decorator metadata.
    *
@@ -860,47 +845,42 @@ export interface DecoratorOptions {
    * @see https://www.typescriptlang.org/tsconfig/#emitDecoratorMetadata
    * @default false
    */
-  emitDecoratorMetadata?: boolean;
+  emitDecoratorMetadata?: boolean
 }
 
 export interface Es2015Options {
   /** Transform arrow functions into function expressions. */
-  arrowFunction?: ArrowFunctionsOptions;
+  arrowFunction?: ArrowFunctionsOptions
 }
 
-export type HelperMode =
-  /**
-   * Runtime mode (default): Helper functions are imported from a runtime package.
-   *
-   * Example:
-   *
-   * ```js
-   * import helperName from "@oxc-project/runtime/helpers/helperName";
-   * helperName(...arguments);
-   * ```
-   */
-  | "Runtime"
-  /**
-   * External mode: Helper functions are accessed from a global `babelHelpers` object.
-   *
-   * Example:
-   *
-   * ```js
-   * babelHelpers.helperName(...arguments);
-   * ```
-   */
-  | "External";
+export type HelperMode = /**
+ * Runtime mode (default): Helper functions are imported from a runtime package.
+ *
+ * Example:
+ *
+ * ```js
+ * import helperName from "@oxc-project/runtime/helpers/helperName";
+ * helperName(...arguments);
+ * ```
+ */
+'Runtime'|
+/**
+ * External mode: Helper functions are accessed from a global `babelHelpers` object.
+ *
+ * Example:
+ *
+ * ```js
+ * babelHelpers.helperName(...arguments);
+ * ```
+ */
+'External';
 
 export interface Helpers {
-  mode?: HelperMode;
+  mode?: HelperMode
 }
 
 /** TypeScript Isolated Declarations for Standalone DTS Emit */
-export declare function isolatedDeclaration(
-  filename: string,
-  sourceText: string,
-  options?: IsolatedDeclarationsOptions | undefined | null
-): IsolatedDeclarationsResult;
+export declare function isolatedDeclaration(filename: string, sourceText: string, options?: IsolatedDeclarationsOptions | undefined | null): IsolatedDeclarationsResult
 
 export interface IsolatedDeclarationsOptions {
   /**
@@ -911,14 +891,14 @@ export interface IsolatedDeclarationsOptions {
    *
    * See <https://www.typescriptlang.org/tsconfig/#stripInternal>
    */
-  stripInternal?: boolean;
-  sourcemap?: boolean;
+  stripInternal?: boolean
+  sourcemap?: boolean
 }
 
 export interface IsolatedDeclarationsResult {
-  code: string;
-  map?: SourceMap;
-  errors: Array<OxcError>;
+  code: string
+  map?: SourceMap
+  errors: Array<OxcError>
 }
 
 /**
@@ -935,7 +915,7 @@ export interface JsxOptions {
    *
    * @default 'automatic'
    */
-  runtime?: "classic" | "automatic";
+  runtime?: 'classic' | 'automatic'
   /**
    * Emit development-specific information, such as `__source` and `__self`.
    *
@@ -943,7 +923,7 @@ export interface JsxOptions {
    *
    * @see {@link https://babeljs.io/docs/babel-plugin-transform-react-jsx-development}
    */
-  development?: boolean;
+  development?: boolean
   /**
    * Toggles whether or not to throw an error if an XML namespaced tag name
    * is used.
@@ -953,7 +933,7 @@ export interface JsxOptions {
    *
    * @default true
    */
-  throwIfNamespace?: boolean;
+  throwIfNamespace?: boolean
   /**
    * Enables `@babel/plugin-transform-react-pure-annotations`.
    *
@@ -963,13 +943,13 @@ export interface JsxOptions {
    *
    * @default true
    */
-  pure?: boolean;
+  pure?: boolean
   /**
    * Replaces the import source when importing functions.
    *
    * @default 'react'
    */
-  importSource?: string;
+  importSource?: string
   /**
    * Replace the function used when compiling JSX expressions. It should be a
    * qualified name (e.g. `React.createElement`) or an identifier (e.g.
@@ -979,7 +959,7 @@ export interface JsxOptions {
    *
    * @default 'React.createElement'
    */
-  pragma?: string;
+  pragma?: string
   /**
    * Replace the component used when compiling JSX fragments. It should be a
    * valid JSX tag name.
@@ -988,7 +968,7 @@ export interface JsxOptions {
    *
    * @default 'React.Fragment'
    */
-  pragmaFrag?: string;
+  pragmaFrag?: string
   /**
    * When spreading props, use `Object.assign` directly instead of an extend helper.
    *
@@ -996,7 +976,7 @@ export interface JsxOptions {
    *
    * @default false
    */
-  useBuiltIns?: boolean;
+  useBuiltIns?: boolean
   /**
    * When spreading props, use inline object with spread elements directly
    * instead of an extend helper or Object.assign.
@@ -1005,7 +985,7 @@ export interface JsxOptions {
    *
    * @default false
    */
-  useSpread?: boolean;
+  useSpread?: boolean
   /**
    * Enable React Fast Refresh .
    *
@@ -1013,7 +993,7 @@ export interface JsxOptions {
    *
    * @default false
    */
-  refresh?: boolean | ReactRefreshOptions;
+  refresh?: boolean | ReactRefreshOptions
 }
 
 /**
@@ -1029,11 +1009,7 @@ export interface JsxOptions {
  *
  * @deprecated Only works for Vite.
  */
-export declare function moduleRunnerTransform(
-  filename: string,
-  sourceText: string,
-  options?: ModuleRunnerTransformOptions | undefined | null
-): ModuleRunnerTransformResult;
+export declare function moduleRunnerTransform(filename: string, sourceText: string, options?: ModuleRunnerTransformOptions | undefined | null): ModuleRunnerTransformResult
 
 export interface ModuleRunnerTransformOptions {
   /**
@@ -1045,7 +1021,7 @@ export interface ModuleRunnerTransformOptions {
    *
    * @see {@link SourceMap}
    */
-  sourcemap?: boolean;
+  sourcemap?: boolean
 }
 
 export interface ModuleRunnerTransformResult {
@@ -1054,15 +1030,15 @@ export interface ModuleRunnerTransformResult {
    *
    * If parsing failed, this will be an empty string.
    */
-  code: string;
+  code: string
   /**
    * The source map for the transformed code.
    *
    * This will be set if {@link TransformOptions#sourcemap} is `true`.
    */
-  map?: SourceMap;
-  deps: Array<string>;
-  dynamicDeps: Array<string>;
+  map?: SourceMap
+  deps: Array<string>
+  dynamicDeps: Array<string>
   /**
    * Parse and transformation errors.
    *
@@ -1070,11 +1046,11 @@ export interface ModuleRunnerTransformResult {
    * transformed code may still be available even if there are errors in this
    * list.
    */
-  errors: Array<OxcError>;
+  errors: Array<OxcError>
 }
 
 export interface PluginsOptions {
-  styledComponents?: StyledComponentsOptions;
+  styledComponents?: StyledComponentsOptions
 }
 
 export interface ReactRefreshOptions {
@@ -1083,14 +1059,14 @@ export interface ReactRefreshOptions {
    *
    * @default `$RefreshReg$`.
    */
-  refreshReg?: string;
+  refreshReg?: string
   /**
    * Specify the identifier of the refresh signature variable.
    *
    * @default `$RefreshSig$`.
    */
-  refreshSig?: string;
-  emitFullSignatures?: boolean;
+  refreshSig?: string
+  emitFullSignatures?: boolean
 }
 
 /**
@@ -1105,35 +1081,35 @@ export interface StyledComponentsOptions {
    *
    * @default true
    */
-  displayName?: boolean;
+  displayName?: boolean
   /**
    * Controls whether the `displayName` of a component will be prefixed with the filename
    * to make the component name as unique as possible.
    *
    * @default true
    */
-  fileName?: boolean;
+  fileName?: boolean
   /**
    * Adds a unique identifier to every styled component to avoid checksum mismatches
    * due to different class generation on the client and server during server-side rendering.
    *
    * @default true
    */
-  ssr?: boolean;
+  ssr?: boolean
   /**
    * Transpiles styled-components tagged template literals to a smaller representation
    * than what Babel normally creates, helping to reduce bundle size.
    *
    * @default true
    */
-  transpileTemplateLiterals?: boolean;
+  transpileTemplateLiterals?: boolean
   /**
    * Minifies CSS content by removing all whitespace and comments from your CSS,
    * keeping valuable bytes out of your bundles.
    *
    * @default true
    */
-  minify?: boolean;
+  minify?: boolean
   /**
    * Enables transformation of JSX `css` prop when using styled-components.
    *
@@ -1141,19 +1117,19 @@ export interface StyledComponentsOptions {
    *
    * @default true
    */
-  cssProp?: boolean;
+  cssProp?: boolean
   /**
    * Enables "pure annotation" to aid dead code elimination by bundlers.
    *
    * @default false
    */
-  pure?: boolean;
+  pure?: boolean
   /**
    * Adds a namespace prefix to component identifiers to ensure class names are unique.
    *
    * Example: With `namespace: "my-app"`, generates `componentId: "my-app__sc-3rfj0a-1"`
    */
-  namespace?: string;
+  namespace?: string
   /**
    * List of file names that are considered meaningless for component naming purposes.
    *
@@ -1163,13 +1139,13 @@ export interface StyledComponentsOptions {
    *
    * @default `["index"]`
    */
-  meaninglessFileNames?: Array<string>;
+  meaninglessFileNames?: Array<string>
   /**
    * Import paths to be considered as styled-components imports at the top level.
    *
    * **Note: This feature is not yet implemented in oxc.**
    */
-  topLevelImportPaths?: Array<string>;
+  topLevelImportPaths?: Array<string>
 }
 
 /**
@@ -1184,11 +1160,7 @@ export interface StyledComponentsOptions {
  * @returns an object containing the transformed code, source maps, and any
  * errors that occurred during parsing or transformation.
  */
-export declare function transform(
-  filename: string,
-  sourceText: string,
-  options?: TransformOptions | undefined | null
-): TransformResult;
+export declare function transform(filename: string, sourceText: string, options?: TransformOptions | undefined | null): TransformResult
 
 /**
  * Transpile a JavaScript or TypeScript into a target ECMAScript version, asynchronously.
@@ -1204,11 +1176,7 @@ export declare function transform(
  * @returns a promise that resolves to an object containing the transformed code,
  * source maps, and any errors that occurred during parsing or transformation.
  */
-export declare function transformAsync(
-  filename: string,
-  sourceText: string,
-  options?: TransformOptions | undefined | null
-): Promise<TransformResult>;
+export declare function transformAsync(filename: string, sourceText: string, options?: TransformOptions | undefined | null): Promise<TransformResult>
 
 /**
  * Options for transforming a JavaScript or TypeScript file.
@@ -1217,14 +1185,14 @@ export declare function transformAsync(
  */
 export interface TransformOptions {
   /** Treat the source text as `js`, `jsx`, `ts`, `tsx`, or `dts`. */
-  lang?: "js" | "jsx" | "ts" | "tsx" | "dts";
+  lang?: 'js' | 'jsx' | 'ts' | 'tsx' | 'dts'
   /** Treat the source text as `script` or `module` code. */
-  sourceType?: "script" | "module" | "unambiguous" | undefined;
+  sourceType?: 'script' | 'module' | 'unambiguous' | undefined
   /**
    * The current working directory. Used to resolve relative paths in other
    * options.
    */
-  cwd?: string;
+  cwd?: string
   /**
    * Enable source map generation.
    *
@@ -1234,13 +1202,13 @@ export interface TransformOptions {
    *
    * @see {@link SourceMap}
    */
-  sourcemap?: boolean;
+  sourcemap?: boolean
   /** Set assumptions in order to produce smaller output. */
-  assumptions?: CompilerAssumptions;
+  assumptions?: CompilerAssumptions
   /** Configure how TypeScript is transformed. */
-  typescript?: TypeScriptOptions;
+  typescript?: TypeScriptOptions
   /** Configure how TSX and JSX are transformed. */
-  jsx?: "preserve" | JsxOptions;
+  jsx?: 'preserve' | JsxOptions
   /**
    * Sets the target environment for the generated JavaScript.
    *
@@ -1255,17 +1223,17 @@ export interface TransformOptions {
    *
    * @see [esbuild#target](https://esbuild.github.io/api/#target)
    */
-  target?: string | Array<string>;
+  target?: string | Array<string>
   /** Behaviour for runtime helpers. */
-  helpers?: Helpers;
+  helpers?: Helpers
   /** Define Plugin */
-  define?: Record<string, string>;
+  define?: Record<string, string>
   /** Inject Plugin */
-  inject?: Record<string, string | [string, string]>;
+  inject?: Record<string, string | [string, string]>
   /** Decorator plugin */
-  decorator?: DecoratorOptions;
+  decorator?: DecoratorOptions
   /** Third-party plugins to use. */
-  plugins?: PluginsOptions;
+  plugins?: PluginsOptions
 }
 
 export interface TransformResult {
@@ -1274,13 +1242,13 @@ export interface TransformResult {
    *
    * If parsing failed, this will be an empty string.
    */
-  code: string;
+  code: string
   /**
    * The source map for the transformed code.
    *
    * This will be set if {@link TransformOptions#sourcemap} is `true`.
    */
-  map?: SourceMap;
+  map?: SourceMap
   /**
    * The `.d.ts` declaration file for the transformed code. Declarations are
    * only generated if `declaration` is set to `true` and a TypeScript file
@@ -1291,13 +1259,13 @@ export interface TransformResult {
    * @see {@link TypeScriptOptions#declaration}
    * @see [declaration tsconfig option](https://www.typescriptlang.org/tsconfig/#declaration)
    */
-  declaration?: string;
+  declaration?: string
   /**
    * Declaration source map. Only generated if both
    * {@link TypeScriptOptions#declaration declaration} and
    * {@link TransformOptions#sourcemap sourcemap} are set to `true`.
    */
-  declarationMap?: SourceMap;
+  declarationMap?: SourceMap
   /**
    * Helpers used.
    *
@@ -1309,7 +1277,7 @@ export interface TransformResult {
    * { "_objectSpread": "@oxc-project/runtime/helpers/objectSpread2" }
    * ```
    */
-  helpersUsed: Record<string, string>;
+  helpersUsed: Record<string, string>
   /**
    * Parse and transformation errors.
    *
@@ -1317,14 +1285,14 @@ export interface TransformResult {
    * transformed code may still be available even if there are errors in this
    * list.
    */
-  errors: Array<OxcError>;
+  errors: Array<OxcError>
 }
 
 export interface TypeScriptOptions {
-  jsxPragma?: string;
-  jsxPragmaFrag?: string;
-  onlyRemoveTypeImports?: boolean;
-  allowNamespaces?: boolean;
+  jsxPragma?: string
+  jsxPragmaFrag?: string
+  onlyRemoveTypeImports?: boolean
+  allowNamespaces?: boolean
   /**
    * When enabled, type-only class fields are only removed if they are prefixed with the declare modifier:
    *
@@ -1333,7 +1301,7 @@ export interface TypeScriptOptions {
    * Allowing `declare` fields is built-in support in Oxc without any option. If you want to remove class fields
    * without initializer, you can use `remove_class_fields_without_initializer: true` instead.
    */
-  allowDeclareFields?: boolean;
+  allowDeclareFields?: boolean
   /**
    * When enabled, class fields without initializers are removed.
    *
@@ -1368,7 +1336,7 @@ export interface TypeScriptOptions {
    *
    * Defaults to `false`.
    */
-  removeClassFieldsWithoutInitializer?: boolean;
+  removeClassFieldsWithoutInitializer?: boolean
   /**
    * Also generate a `.d.ts` declaration file for TypeScript files.
    *
@@ -1378,7 +1346,7 @@ export interface TypeScriptOptions {
    *
    * @default false
    */
-  declaration?: IsolatedDeclarationsOptions;
+  declaration?: IsolatedDeclarationsOptions
   /**
    * Rewrite or remove TypeScript import/export declaration extensions.
    *
@@ -1389,5 +1357,5 @@ export interface TypeScriptOptions {
    *
    * @default false
    */
-  rewriteImportExtensions?: "rewrite" | "remove" | boolean;
+  rewriteImportExtensions?: 'rewrite' | 'remove' | boolean
 }
