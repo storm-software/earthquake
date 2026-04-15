@@ -16,12 +16,13 @@ repository    = "https://github.com/storm-software/earthquake"
 version       = "0.1.0"
 
 [workspace.lints.rust]
-missing-debug-implementations = "warn"
+dead_code                     = "allow"
+missing-debug-implementations = "allow"
 missing-docs                  = "allow"
 rust-2018-idioms              = "deny"
 unnameable-types              = "warn"
 unreachable-pub               = "warn"
-unused-must-use               = "deny"
+unused-must-use               = "allow"
 
 [workspace.lints.rustdoc]
 all = "allow"
@@ -69,10 +70,9 @@ must_use_candidate = "allow"
 
 doc_markdown         = "allow"
 missing_const_for_fn = "allow"
+missing_panics_doc   = "allow"
 needless_for_each    = "allow"
 new_without_default  = "allow"
-# TODO: should review this rule.
-missing_panics_doc = "allow"
 
 # Order doesn't really matter https://rust-lang.github.io/rust-clippy/master/index.html#/inconsistent_struct_constructor
 inconsistent_struct_constructor = "allow"
@@ -91,9 +91,8 @@ significant_drop_in_scrutinee = "warn"
 unused_peekable               = "warn"
 
 # Rewriting `unwrap_or` to `map_or` requires to annotate type explicitly which is cumbersome
-map_unwrap_or = "allow"
-
 collapsible_if = "allow"
+map_unwrap_or  = "allow"
 
 [workspace.metadata.docs.rs]
 all-features = true
@@ -163,16 +162,16 @@ xxhash-rust        = "0.8.15"
 
 # oxc crates with the same version
 oxc = { version = "0.97.0", features = [
-  "ast_visit",
-  "transformer",
-  "minifier",
-  "mangler",
-  "semantic",
-  "codegen",
-  "serialize",
-  "isolated_declarations",
-  "regular_expression",
-  "cfg"
+    "ast_visit",
+    "transformer",
+    "minifier",
+    "mangler",
+    "semantic",
+    "codegen",
+    "serialize",
+    "isolated_declarations",
+    "regular_expression",
+    "cfg"
 ] }
 oxc_allocator = { version = "0.97.0", features = ["pool"] }
 oxc_ecmascript = { version = "0.97.0" }
@@ -191,14 +190,14 @@ oxc_sourcemap     = { version = "6.0.1" }
 
 # napi
 napi = { version = "3.0.0", features = [
-  "async",
-  "anyhow",
-  "napi4",
-  "tokio_rt"
+    "async",
+    "anyhow",
+    "napi4",
+    "tokio_rt"
 ] }
 napi-build = { version = "2.2.2" }
 napi-derive = { version = "3.0.0", default-features = false, features = [
-  "type-def"
+    "type-def"
 ] }
 
 # [patch.crates-io]
