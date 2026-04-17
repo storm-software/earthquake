@@ -3,62 +3,63 @@ packages:
   - packages/*
   - docs/*
   - playground/*
+
 catalog:
-  "@ls-lint/ls-lint": ^2.3.1
-  "@monodon/rust": ^2.3.0
-  "@napi-rs/cli": ^3.6.1
-  "@napi-rs/wasm-runtime": 1.1.0
-  "@nx/devkit": 22.6.5
-  "@nx/eslint-plugin": 22.6.5
-  "@nx/js": 22.6.5
-  "@nx/plugin": 22.6.5
-  "@nx/react": 22.6.5
-  "@nx/vite": 22.6.5
-  "@nx/web": 22.6.5
-  "@nx/workspace": 22.6.5
-  "@oxc-project/runtime": ^0.97.0
-  "@oxc-project/types": ^0.99.0
-  "@powerlines/core": ^0.13.11
-  "@powerlines/nx": ^0.12.13
-  "@powerlines/plugin-plugin": ^0.12.350
-  "@powerlines/plugin-react": ^0.1.459
-  "@powerlines/plugin-tsdown": ^0.1.340
-  "@powerlines/plugin-untyped": ^0.2.352
-  "@powerlines/plugin-vite": ^0.14.393
-  "@powerlines/tsconfig": ^0.4.61
-  "@powerlines/tsdoc": ^0.2.9
-  "@storm-software/config": ^1.137.31
-  "@storm-software/config-tools": ^1.189.77
-  "@storm-software/cspell": ^0.46.67
-  "@storm-software/eslint": ^0.170.19
-  "@storm-software/git-tools": ^2.130.35
-  "@storm-software/linting-tools": ^1.133.28
-  "@storm-software/markdownlint": ^0.30.155
-  "@storm-software/pnpm-tools": ^0.7.5
-  "@storm-software/prettier": ^0.59.51
-  "@storm-software/testing-tools": ^1.119.152
-  "@storm-software/tsconfig": ^0.48.66
-  "@storm-software/tsdoc": ^0.13.152
-  "@storm-software/untyped": ^0.24.140
-  "@storm-software/workspace-tools": ^1.295.55
-  "@stryke/path": ^0.27.4
-  "@stryke/type-checks": ^0.6.1
-  "@stryke/types": ^0.11.3
-  "@stryke/url": ^0.4.15
-  "@swc-node/register": 1.11.1
-  "@swc/core": 1.15.8
-  "@swc/helpers": 0.5.19
-  "@types/estree": 1.0.8
-  "@types/node": ^24.12.2
-  "@types/react": ^19.2.14
-  "@types/react-dom": ^19.2.3
-  "@vitest/ui": ^3.2.4
+  '@ls-lint/ls-lint': ^2.3.1
+  '@monodon/rust': ^2.3.0
+  '@napi-rs/cli': ^3.6.2
+  '@napi-rs/wasm-runtime': 1.1.0
+  '@nx/devkit': 22.6.5
+  '@nx/eslint-plugin': 22.6.5
+  '@nx/js': 22.6.5
+  '@nx/plugin': 22.6.5
+  '@nx/react': 22.6.5
+  '@nx/vite': 22.6.5
+  '@nx/web': 22.6.5
+  '@nx/workspace': 22.6.5
+  '@oxc-project/runtime': ^0.97.0
+  '@oxc-project/types': ^0.99.0
+  '@powerlines/core': ^0.13.11
+  '@powerlines/nx': ^0.12.13
+  '@powerlines/plugin-plugin': ^0.12.350
+  '@powerlines/plugin-react': ^0.1.459
+  '@powerlines/plugin-tsdown': ^0.1.340
+  '@powerlines/plugin-untyped': ^0.2.352
+  '@powerlines/plugin-vite': ^0.14.393
+  '@powerlines/tsconfig': ^0.4.61
+  '@powerlines/tsdoc': ^0.2.9
+  '@storm-software/config': ^1.137.31
+  '@storm-software/config-tools': ^1.189.77
+  '@storm-software/cspell': ^0.46.67
+  '@storm-software/eslint': ^0.170.19
+  '@storm-software/git-tools': ^2.130.35
+  '@storm-software/linting-tools': ^1.133.28
+  '@storm-software/markdownlint': ^0.30.155
+  '@storm-software/pnpm-tools': ^0.7.5
+  '@storm-software/prettier': ^0.59.51
+  '@storm-software/testing-tools': ^1.119.152
+  '@storm-software/tsconfig': ^0.48.66
+  '@storm-software/tsdoc': ^0.13.152
+  '@storm-software/untyped': ^0.24.140
+  '@storm-software/workspace-tools': ^1.295.55
+  '@stryke/path': ^0.27.4
+  '@stryke/type-checks': ^0.6.1
+  '@stryke/types': ^0.11.3
+  '@stryke/url': ^0.4.15
+  '@swc-node/register': 1.11.1
+  '@swc/core': 1.15.8
+  '@swc/helpers': 0.5.19
+  '@types/estree': 1.0.8
+  '@types/node': ^24.12.2
+  '@types/react': ^19.2.14
+  '@types/react-dom': ^19.2.3
+  '@vitest/ui': ^3.2.4
   copyfiles: ^2.4.1
   esbuild: ^0.24.2
   eslint: ^9.39.4
   eslint-flat-config-utils: ^2.1.4
   estree-walker: ^3.0.3
-  fast-xml-parser: ^5.6.0
+  fast-xml-parser: ^5.7.0
   jsonc-eslint-parser: ^2.4.2
   lefthook: ^1.13.6
   log4brains: ^1.1.0
@@ -79,17 +80,21 @@ catalog:
   vite: 8.0.0-beta.2
   vitest: ^3.2.4
   zx: ^8.8.5
+
 configDependencies:
   pnpm-plugin-storm-software: 0.1.110+sha512-r5u7IrfK3K07+6TmEf39s2i0XumxUMJlZAVgMC0+HsNobXB/ta5OKJBuTp20WcaDBczxNod8PANPJXfkC0W+rA==
+
 fetchTimeout: 240000
+
 minimumReleaseAgeExclude:
-  - "@storm-software/*"
-  - "@stryke/*"
-  - "@powerlines/*"
+  - '@storm-software/*'
+  - '@stryke/*'
+  - '@powerlines/*'
   - powerlines
+
 onlyBuiltDependencies:
-  - "@parcel/watcher"
-  - "@swc/core"
+  - '@parcel/watcher'
+  - '@swc/core'
   - core-js
   - esbuild
   - lefthook
@@ -98,36 +103,38 @@ onlyBuiltDependencies:
   - sharp
   - unrs-resolver
   - workerd
+
 overrides:
-  "@earthquake-playground/starter": workspace:*
-  "@earthquake/nx": workspace:*
-  "@earthquake/rss": workspace:*
-  "@earthquake/tools-config": workspace:*
-  "@earthquake/tools-cspell": workspace:*
-  "@earthquake/tools-plugin-build": workspace:*
-  "@earthquake/tools-scripts": workspace:*
-  "@earthquake/tsconfig": workspace:*
-  cookie: ">=0.7.0"
-  debug: ">=4.4.0"
+  '@earthquake-playground/starter': workspace:*
+  '@earthquake/nx': workspace:*
+  '@earthquake/rss': workspace:*
+  '@earthquake/tools-config': workspace:*
+  '@earthquake/tools-cspell': workspace:*
+  '@earthquake/tools-plugin-build': workspace:*
+  '@earthquake/tools-scripts': workspace:*
+  '@earthquake/tsconfig': workspace:*
+  cookie: '>=0.7.0'
+  debug: '>=4.4.0'
   earthquake: workspace:*
-  follow-redirects: ">=1.15.9"
-  got: ">=14.4.5"
-  ip: ">=2.0.1"
-  loader-utils: ">=3.3.1"
-  markdown-it: ">=14.1.0"
-  micromatch: ">=4.0.8"
-  next: ">=13.4.20-canary.13"
-  node-fetch: ">=3.3.2"
-  nth-check: ">=2.1.1"
-  parse-path: ">=7.0.0"
-  parse-url: ">=9.2.0"
-  path-to-regexp: ">=0.1.12"
-  postcss: ">=8.5.1"
-  shell-quote: ">=1.8.2"
-  simple-git: ">=3.27.0"
+  follow-redirects: '>=1.15.9'
+  got: '>=14.4.5'
+  ip: '>=2.0.1'
+  loader-utils: '>=3.3.1'
+  markdown-it: '>=14.1.0'
+  micromatch: '>=4.0.8'
+  next: '>=13.4.20-canary.13'
+  node-fetch: '>=3.3.2'
+  nth-check: '>=2.1.1'
+  parse-path: '>=7.0.0'
+  parse-url: '>=9.2.0'
+  path-to-regexp: '>=0.1.12'
+  postcss: '>=8.5.1'
+  shell-quote: '>=1.8.2'
+  simple-git: '>=3.27.0'
+
 shamefullyHoist: true
+
 supportedArchitectures:
-  cpu:
-    - current
-    - wasm32
+  cpu: [current, wasm32]
+
 useNodeVersion: 25.5.0
