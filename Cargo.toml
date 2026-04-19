@@ -111,7 +111,7 @@ earthquake-tracing = { path = "./crates/earthquake-tracing" }
 earthquake-utils   = { path = "./crates/earthquake-utils" }
 
 # Storm Software
-storm-config = "0.27.4"
+storm-config = "0.28.168"
 
 anyhow             = "1.0.98"
 arcstr             = { version = "1.2.0", default-features = false }
@@ -140,7 +140,7 @@ nom                = { version = "8.0.0", features = ["std"] }
 num_cpus           = "1.17.0"
 rayon              = "1.7.0"
 regex              = "1.12.2"
-regress            = "0.10.5"
+regress            = "0.11.1"
 ropey              = "1.6.1"
 rustc-hash         = { version = "2.1.1" }
 schemars           = "1.1.0"
@@ -161,7 +161,7 @@ walkdir            = "2.5.0"
 xxhash-rust        = "0.8.15"
 
 # oxc crates with the same version
-oxc = { version = "0.97.0", features = [
+oxc = { version = "0.126.0", features = [
   "ast_visit",
   "transformer",
   "minifier",
@@ -173,12 +173,12 @@ oxc = { version = "0.97.0", features = [
   "regular_expression",
   "cfg"
 ] }
-oxc_allocator = { version = "0.97.0", features = ["pool"] }
-oxc_ecmascript = { version = "0.97.0" }
-oxc_minify_napi = { version = "0.97.0" }
-oxc_parser_napi = { version = "0.97.0" }
-oxc_transform_napi = { version = "0.97.0" }
-oxc_traverse = { version = "0.97.0" }
+oxc_allocator = { version = "0.126.0", features = ["pool"] }
+oxc_ecmascript = { version = "0.126.0" }
+oxc_minify_napi = { version = "0.126.0" }
+oxc_parser_napi = { version = "0.126.0" }
+oxc_transform_napi = { version = "0.126.0" }
+oxc_traverse = { version = "0.126.0" }
 
 # oxc crates in their own repos
 # Versions must be relaxed for usage in oxc.
