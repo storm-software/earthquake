@@ -130,11 +130,11 @@ derive_more        = { version = "2.0.1", features = ["debug"] }
 fast-glob          = "1.0.0"
 flate2             = { version = "=1.1.2", features = ["zlib-rs"] }
 form_urlencoded    = "1.2.2"
-futures            = "0.3.31"
+futures            = "0.3.32"
 infer              = "0.19.0"
 itertools          = "0.14.0"
 memchr             = "2.7.6"
-mimalloc-safe      = "0.1.52"
+mimalloc-safe      = "0.1.57"
 mime               = "0.3.17"
 nom                = { version = "8.0.0", features = ["std"] }
 num_cpus           = "1.17.0"
