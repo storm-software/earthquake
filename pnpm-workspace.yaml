@@ -128,7 +128,7 @@ overrides:
   parse-path: '>=7.0.0'
   parse-url: '>=9.2.0'
   path-to-regexp: '>=0.1.12'
-  postcss: '>=8.5.1'
+  postcss: '>=8.5.12'
   shell-quote: '>=1.8.2'
   simple-git: '>=3.27.0'
 
