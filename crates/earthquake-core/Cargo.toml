@@ -47,7 +47,7 @@ tracing            = { workspace = true }
 tracing-subscriber = { workspace = true }
 
 # Oxc
-jwalk          = "0.8.1"
+jwalk          = "0.9.0"
 oxc            = { workspace = true }
 oxc_allocator  = { workspace = true }
 oxc_ecmascript = { workspace = true }
